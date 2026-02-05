@@ -104,7 +104,7 @@ Language detail pages are automatically generated from this data.
 
 ## Generating Illustrations
 
-The site includes an AI illustration generation pipeline using OpenAI's gpt-image-1.5 model.
+The site includes an AI illustration generation pipeline using OpenAI's GPT Image model (gpt-image-1.5).
 
 ```bash
 # Estimate cost (no API calls)
@@ -120,9 +120,38 @@ node scripts/generate-illustrations.js --only=apple,ball,cat
 node scripts/generate-illustrations.js --category=animals
 ```
 
-Requires `OPENAI_API_KEY` in `.env` file.
+Requires `OPENAI_API_KEY` in your environment (e.g. in a `.env` file).
 
 **Cost estimate**: ~$1-2 for 30 illustrations at medium quality.
+
+### API Organization Verification
+
+GPT Image models require **API Organization Verification** before you can generate images. If you see 404 or access-denied errors when running the script:
+
+1. Go to [platform.openai.com](https://platform.openai.com) → **Settings** → **Organization** → **General**.
+2. Complete [API Organization Verification](https://help.openai.com/en/articles/10910291-api-organization-verification) (government-issued ID, etc.).
+3. Retry: `node scripts/generate-illustrations.js --only=bear`.
+
+Without verification, the images API will reject requests even with a valid API key.
+
+### Testing the API
+
+To confirm image generation works:
+
+1. Set `OPENAI_API_KEY` (e.g. in `.env` or `export OPENAI_API_KEY=sk-...`).
+2. Run a single object:  
+   `node scripts/generate-illustrations.js --only=bear`
+3. On success, `public/illustrations/bear.png` is created and the script prints a success count. The homepage will show this image (it is preferred over the SVG fallback when present).
+4. Optional — test the endpoint with curl (no `response_format` for GPT Image):
+
+   ```bash
+   curl -X POST "https://api.openai.com/v1/images/generations" \
+     -H "Authorization: Bearer $OPENAI_API_KEY" \
+     -H "Content-Type: application/json" \
+     -d '{"model": "gpt-image-1.5", "prompt": "A friendly teddy bear", "n": 1, "size": "1024x1024"}'
+   ```
+
+   A successful response includes base64 image data in `data[0].b64_json`.
 
 ## Design System
 

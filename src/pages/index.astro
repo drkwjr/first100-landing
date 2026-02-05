@@ -7,7 +7,10 @@ import TrustSignals from '../components/TrustSignals.astro';
 import IllustrationField from '../components/IllustrationField.astro';
 import languageData from '../data/languages.json';
 
-const featuredLanguages = languageData.languages.filter(lang => lang.featured);
+// Featured languages: available first, then coming-soon (homepage only)
+const featuredLanguages = languageData.languages
+  .filter(lang => lang.featured)
+  .sort((a, b) => (a.status === 'available' ? 0 : 1) - (b.status === 'available' ? 0 : 1));
 const totalLanguages = languageData.languages.length;
 ---
 
@@ -16,7 +19,7 @@ const totalLanguages = languageData.languages.length;
   
   <!-- Hero Section -->
   <section class="hero">
-    <IllustrationField variant="hero" />
+    <IllustrationField variant="hero" realIllustrationIds={['bear']} />
     <div class="hero__content container">
       <h1 class="hero__headline">
         First Words for Kids —<br />

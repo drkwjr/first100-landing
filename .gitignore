@@ -9,6 +9,9 @@ dist/
 .env.local
 .env.*.local
 
+# Cursor MCP config (may contain API tokens / secrets)
+.cursor/mcp.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

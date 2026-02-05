@@ -44,6 +44,7 @@ export const OBJECTS = [
   { id: 'elephant', prompt: 'A baby elephant facing slightly to the side, gray with big ears and small trunk raised', category: 'animals' },
   { id: 'rabbit', prompt: 'A sitting bunny rabbit, white with long ears up, facing forward', category: 'animals' },
   { id: 'duck', prompt: 'A yellow rubber duck or duckling, classic friendly shape, side view', category: 'animals' },
+  { id: 'bear', prompt: 'A friendly teddy-style bear sitting facing forward, soft brown with round ears and gentle expression', category: 'animals' },
   
   // Food
   { id: 'apple', prompt: 'A single red apple with a small green leaf on a short brown stem', category: 'food' },

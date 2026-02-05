@@ -14,23 +14,30 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
 import { OBJECTS, buildPrompt, estimateCost, getObjectsByCategory } from './illustration-prompts.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, '..');
+
+dotenv.config({ path: path.join(ROOT_DIR, '.env') });
 const OUTPUT_DIR = path.join(ROOT_DIR, 'public', 'illustrations');
 const LOG_FILE = path.join(ROOT_DIR, 'generation-log.json');
 const MANIFEST_FILE = path.join(ROOT_DIR, 'src', 'data', 'illustrations.json');
 
-// Configuration
+// Configuration — OpenAI GPT Image 1.5 (Image API: /v1/images/generations)
+// GPT Image models always return base64; do not send response_format for them (API rejects it).
 const CONFIG = {
-  model: 'gpt-image-1',  // OpenAI's latest image model
+  model: 'gpt-image-1.5',
   size: '1024x1024',
   quality: 'medium',
-  responseFormat: 'b64_json', // Base64 for easy saving
-  batchDelay: 1000, // ms between requests to avoid rate limiting
+  responseFormat: 'b64_json', // only used for dall-e-2 / dall-e-3
+  batchDelay: 1000,
 };
+
+const GPT_IMAGE_MODELS = new Set(['gpt-image-1.5', 'gpt-image-1', 'gpt-image-1-mini']);
+const FALLBACK_MODEL = 'gpt-image-1'; // try this if gpt-image-1.5 returns 404 (e.g. org has access to 1 but not 1.5)
 
 /**
  * Parse command line arguments
@@ -103,37 +110,72 @@ function saveManifest(manifest) {
 }
 
 /**
- * Generate a single illustration using OpenAI API
+ * Build request options for images.generate. GPT Image models must not receive response_format.
+ */
+function buildGenerateOptions(model) {
+  const base = {
+    model,
+    prompt: null, // set per call
+    n: 1,
+    size: CONFIG.size,
+    quality: CONFIG.quality,
+  };
+  if (!GPT_IMAGE_MODELS.has(model)) {
+    base.response_format = CONFIG.responseFormat;
+  }
+  return base;
+}
+
+/**
+ * Generate a single illustration using OpenAI API. On 404 with gpt-image-1.5, retries once with gpt-image-1.
  */
 async function generateIllustration(openai, object, options) {
   const prompt = buildPrompt(object);
-  
   if (options.verbose) {
     console.log(`\n  Prompt: ${prompt.substring(0, 100)}...`);
   }
 
-  try {
-    const response = await openai.images.generate({
-      model: CONFIG.model,
-      prompt: prompt,
-      n: 1,
-      size: CONFIG.size,
-      quality: CONFIG.quality,
-      response_format: CONFIG.responseFormat,
-    });
-
+  async function tryGenerate(model) {
+    const opts = buildGenerateOptions(model);
+    opts.prompt = prompt;
+    const response = await openai.images.generate(opts);
     const imageData = response.data[0].b64_json;
     const buffer = Buffer.from(imageData, 'base64');
-    
     return {
       success: true,
       buffer,
       revisedPrompt: response.data[0].revised_prompt || null,
     };
+  }
+
+  function formatError(error) {
+    const msg = error?.message || String(error);
+    const status = error?.status ?? error?.response?.status ?? '';
+    const body = error?.error ?? error?.response?.data;
+    const bodyStr = body ? ` ${JSON.stringify(body)}` : '';
+    return status ? `${msg} (${status})${bodyStr}` : `${msg}${bodyStr}`;
+  }
+
+  try {
+    return await tryGenerate(CONFIG.model);
   } catch (error) {
+    const is404 = String(error?.status ?? error?.response?.status ?? '').includes('404');
+    if (is404 && CONFIG.model === 'gpt-image-1.5') {
+      if (options.verbose) {
+        console.log(`\n  Retrying with ${FALLBACK_MODEL} after 404...`);
+      }
+      try {
+        return await tryGenerate(FALLBACK_MODEL);
+      } catch (fallbackError) {
+        return {
+          success: false,
+          error: formatError(fallbackError),
+        };
+      }
+    }
     return {
       success: false,
-      error: error.message,
+      error: formatError(error),
     };
   }
 }
@@ -160,7 +202,21 @@ async function main() {
   
   console.log('\n🎨 First 100 Illustration Generator\n');
   console.log('━'.repeat(50));
-  
+  console.log(`  Model: ${CONFIG.model}`);
+
+  // Report existing generated images (PNG = from API; SVG = fallback)
+  const existingPngs = OBJECTS.filter((o) => fs.existsSync(path.join(OUTPUT_DIR, `${o.id}.png`)));
+  const existingSvgs = OBJECTS.filter((o) => fs.existsSync(path.join(OUTPUT_DIR, `${o.id}.svg`)));
+  if (existingPngs.length > 0) {
+    console.log(`  Existing API-generated images: ${existingPngs.map((o) => o.id).join(', ')}`);
+  } else {
+    console.log('  No API-generated images yet (no .png in public/illustrations/). Using fallbacks if .svg exists.');
+  }
+  if (existingSvgs.length > 0) {
+    console.log(`  Fallback SVGs present: ${existingSvgs.map((o) => o.id).join(', ')}`);
+  }
+  console.log('');
+
   // Determine which objects to generate
   let objectsToGenerate = [...OBJECTS];
   

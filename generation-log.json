@@ -1,0 +1,45 @@
+{
+  "runs": [
+    {
+      "timestamp": "2026-02-05T05:43:49.068Z",
+      "objects": [
+        {
+          "id": "bear",
+          "success": false,
+          "error": "404 404 page not found"
+        }
+      ],
+      "successCount": 0,
+      "failCount": 1,
+      "estimatedCost": 0.04
+    },
+    {
+      "timestamp": "2026-02-05T05:44:14.989Z",
+      "objects": [
+        {
+          "id": "bear",
+          "success": false,
+          "error": "404 404 page not found"
+        }
+      ],
+      "successCount": 0,
+      "failCount": 1,
+      "estimatedCost": 0.04
+    },
+    {
+      "timestamp": "2026-02-05T06:29:51.371Z",
+      "objects": [
+        {
+          "id": "bear",
+          "success": false,
+          "error": "404 404 page not found (404)"
+        }
+      ],
+      "successCount": 0,
+      "failCount": 1,
+      "estimatedCost": 0.04
+    }
+  ],
+  "totalSpent": 0.12,
+  "totalGenerated": 0
+}
