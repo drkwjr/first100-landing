@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout 
+  title="Privacy Policy" 
+  description="Privacy policy for First 100 language learning apps."
+>
+  <Header slot="header" currentPath="/privacy" />
+  
+  <article class="privacy-page">
+    <div class="container container--narrow">
+      <h1>Privacy Policy</h1>
+      
+      <p class="last-updated">Last updated: February 2026</p>
+      
+      <section>
+        <h2>Our Commitment</h2>
+        <p>
+          First 100 is designed with children's privacy as a top priority. We believe in keeping things simple: 
+          we don't collect personal information, we don't show ads, and we don't track users.
+        </p>
+      </section>
+      
+      <section>
+        <h2>Information We Don't Collect</h2>
+        <ul>
+          <li>No personal information or user accounts</li>
+          <li>No location data</li>
+          <li>No contact information</li>
+          <li>No photos, videos, or audio recordings</li>
+          <li>No browsing or usage history shared with third parties</li>
+        </ul>
+      </section>
+      
+      <section>
+        <h2>No Advertising</h2>
+        <p>
+          First 100 apps contain no advertising of any kind. We will never show ads to children 
+          or use advertising networks that track users.
+        </p>
+      </section>
+      
+      <section>
+        <h2>No Third-Party Analytics</h2>
+        <p>
+          We do not use third-party analytics services that track individual users. 
+          Our apps work entirely offline and don't require an internet connection.
+        </p>
+      </section>
+      
+      <section>
+        <h2>App Store Information</h2>
+        <p>
+          When you purchase our apps through the Apple App Store or Google Play Store, 
+          those platforms may collect purchase information according to their own privacy policies. 
+          We do not have access to your personal payment information.
+        </p>
+      </section>
+      
+      <section>
+        <h2>COPPA Compliance</h2>
+        <p>
+          First 100 apps are designed to comply with the Children's Online Privacy Protection Act (COPPA). 
+          We do not knowingly collect personal information from children under 13.
+        </p>
+      </section>
+      
+      <section>
+        <h2>Contact</h2>
+        <p>
+          If you have any questions about this privacy policy, please contact us at 
+          <a href="mailto:privacy@first100.app">privacy@first100.app</a>.
+        </p>
+      </section>
+    </div>
+  </article>
+  
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .privacy-page {
+    padding: var(--space-12) 0 var(--space-20);
+  }
+  
+  .privacy-page h1 {
+    font-size: var(--font-size-4xl);
+    margin-bottom: var(--space-4);
+  }
+  
+  .last-updated {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-soft);
+    margin-bottom: var(--space-12);
+  }
+  
+  .privacy-page section {
+    margin-bottom: var(--space-10);
+  }
+  
+  .privacy-page h2 {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-4);
+  }
+  
+  .privacy-page p {
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-4);
+  }
+  
+  .privacy-page ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .privacy-page li {
+    position: relative;
+    padding-left: var(--space-6);
+    margin-bottom: var(--space-2);
+    color: var(--color-text-muted);
+  }
+  
+  .privacy-page li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+  }
+  
+  .privacy-page a {
+    color: var(--color-accent);
+  }
+</style>

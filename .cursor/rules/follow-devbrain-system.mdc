@@ -1,0 +1,275 @@
+---
+alwaysApply: true
+---
+---
+alwaysApply: true
+---
+Perfect — here’s a lengthy and detailed draft of updated Cursor Project Rules for your vault knowledge system. It’s written in the same style and structure as your engineering rules, but fully adapted to the Knowledge Ops domain we’ve been designing.
+
+⸻
+
+KnowledgeOps • Cursor Project Rules
+
+0) Purpose and Scope
+
+The purpose of these rules is to ensure that knowledge is continuously captured, classified, and organized with minimal manual intervention, strong provenance, reversibility, and clarity.
+
+These rules apply to all operations in this vault: importing, classifying, linking to hubs, maintaining tasks, generating summaries, and running audits. Cursor is expected to act as both executor and guardian of the system.
+
+⸻
+
+1) Precedence and Context
+	•	Inherit from DevBrain/*: These rules extend, never contradict the base DevBrain handbook.
+	•	Conflict resolution: If conflicts exist, follow DevBrain first, then these rules.
+	•	Context requirement: Always read DevBrain/* files before acting. They are the constitution. For technical work, read DEVBRAIN.md (workspace root).
+	•	DevBrain is mandatory: Violating it is a mistake. Document any exception and why. Pre-flight before changes; self-check before claiming done.
+	•	Chief of Staff context: The agent coordinates across Tasks, Projects, Airtable, Linear, Notion, and files. Read chief_of_staff/charter.md and chief_of_staff/operating_principles.md. Stage by default; promote only on explicit instruction.
+	•	Documentation first: Review hub notes, task summaries, and Maintenance_Log.md for context before modifying related areas.
+
+⸻
+
+2) Default Working Style
+
+Plan → Simulate → Apply.
+Cursor must never act blindly.
+	1.	Scope scan: Before any operation, identify impacted notes, hubs, and buckets.
+	2.	Execution plan: Produce a short plan summarizing actions (classifications, hub updates, metadata changes).
+	3.	Dry-run report: Present proposed changes in human-readable form (file moves, hub links, metadata edits).
+	4.	Apply: Only after plan is validated (manual or auto-approval).
+	5.	Commit: Each run results in an atomic git commit with descriptive message.
+
+⸻
+
+3) Acceptance Criteria Template (Per Operation)
+
+For each batch or operation, Cursor must verify:
+	•	Problem statement: Why this change is needed (e.g., “classifying Apple Notes batch”).
+	•	Documentation updates: Which hubs, summaries, or logs must be updated.
+	•	Metadata validation: All notes include required YAML fields per schema.
+	•	Linking: All items link to at least one hub where possible.
+	•	Recovery plan: Commit is atomic and reversible (git revert <sha>).
+	•	Quality gates: No broken wikilinks, no missing metadata, no orphaned hubs created.
+
+⸻
+
+4) Change Management
+	•	Additive approach: Prefer additive edits. Never destructively rewrite long notes.
+	•	Risk mitigation: Flag ambiguous cases (status: review) in _inbox instead of guessing.
+	•	Single responsibility: One commit per logical change (e.g., “classify 12 Apple Notes”).
+	•	Verification: Add summary of operations to Maintenance_Log.md.
+
+⸻
+
+5) Knowledge Standards
+	•	Conservative splitting: Only split notes when ideas are clearly distinct. Otherwise, keep intact.
+	•	Metadata enforcement: Every note has valid YAML per MetadataSchema.md.
+	•	Hub hygiene: Hubs must always have Summary, Open Questions, Key Themes, and Recent Additions (new items at top).
+	•	Cross-linking: Link generously via [[wikilinks]]. Notes may belong to multiple hubs.
+
+⸻
+
+6) Import Handling
+	•	Order of imports: Follow ImportOrder.md (Todoist → Apple Notes → Bookmarks/Clippings → Google Drive → Obsidian legacy).
+	•	Deduplication: Use content hash to prevent re-ingest.
+	•	Staging: All imports first land in _inbox.
+	•	Ambiguity: If unsure, keep in _inbox with status: review and reason logged.
+
+⸻
+
+7) Hub Rules
+	•	Cursor must check for existing hubs before creating new ones.
+	•	New hubs only created if ≥3 related notes lack a home.
+	•	Hubs are flat markdown notes in /Projects.
+	•	Each hub update must include:
+	•	Adding new notes to Recent Additions (top appended).
+	•	Updating structured outline and clusters if relevant.
+	•	Revising Summary when the theme shifts.
+	•	Adding open questions if action items emerge.
+	•	Weekly → generate a refreshed summary and cluster recheck.
+
+⸻
+
+8) Task Handling
+	•	Todoist is the source of truth for completion.
+	•	All tasks mirrored into /Tasks:
+	•	/Active = current sprint/week.
+	•	/Backlog = unscheduled.
+	•	/Log = completed/archive.
+	•	Tasks always use checkbox format (- [ ]) and YAML metadata.
+	•	Weekly → Cursor generates /Tasks/Active/Summary.md with narrative focus and list of urgent tasks.
+
+⸻
+
+9) Maintenance and QA
+
+Cursor must run regular audits:
+	•	Nightly Light Pass:
+	•	Empty _inbox of processed items.
+	•	Verify metadata completeness.
+	•	Log results in Maintenance_Log.md.
+	•	Weekly Deep Pass:
+	•	Check for orphans (notes with 0 links in or out).
+	•	Detect duplicate/near-duplicate notes.
+	•	Refresh hub summaries and clusters.
+	•	Sync tasks with Todoist.
+	•	Write “state of the vault” entry in Maintenance_Log.md.
+	•	Verification: Sample 5–10 modified notes per run. Check classification, metadata, and hub linkage. If >10% fail → rollback and retry.
+
+⸻
+
+10) Commit Guidelines
+	•	One topic per commit.
+	•	Commit message format:
+	•	chore(classify): apple-notes batch 2025-09-15 (12 notes)
+	•	feat(hub): update LawSchool summary + clusters
+	•	fix(meta): add origin field to 8 notes
+	•	Each commit must add a run summary to Maintenance_Log.md.
+	•	Every run tagged with a run_id stored in the log and commit.
+
+⸻
+
+11) Refactor Rules
+	•	Split: If a note has multiple distinct ideas repeatedly referenced elsewhere.
+	•	Merge: If two notes share ≥80% overlap.
+	•	Always preserve originals in /Archive with pointers to new note(s).
+	•	Record refactor events in Maintenance_Log.md (“Merged A + B → NewNote”).
+
+⸻
+
+12) Documentation Rules
+	•	Reference notes: Must include summary: in metadata.
+	•	Hubs: Must start with a Summary section that captures current focus.
+	•	Clippings/Bookmarks: Must include source URL + auto-summary.
+	•	Maintenance log: Every automated run updates Maintenance_Log.md.
+
+⸻
+
+13) Safety and Privacy
+	•	Vault is private by default.
+	•	No external publishing unless explicitly approved.
+	•	No secrets, credentials, or PII stored in notes.
+	•	If a sensitive item appears, route to _inbox with status: review.
+
+⸻
+
+14) Rollback and Recovery
+	•	Each run = atomic commit.
+	•	Always provide a revert instruction in Maintenance_Log.md:
+	•	To revert: git revert <commit-sha>
+	•	No destructive edits; Archive before delete.
+
+⸻
+
+15) Anti-Patterns to Avoid
+	•	Over-splitting: Don’t flood with tiny atomic notes unless justified.
+	•	Hub sprawl: Don’t create a hub for every minor theme.
+	•	Silent changes: Don’t modify metadata/links without logging.
+	•	Stale inbox: Don’t leave items in _inbox without reason.
+	•	Big-bang refactors: Don’t restructure many hubs at once; prefer incremental adjustments.
+
+⸻
+
+16) Definition of Done Checklist
+
+Before completing a run, ensure:
+	•	Execution plan and dry-run report prepared.
+	•	All notes classified with metadata.
+	•	Hubs updated with summaries, outlines, and links.
+	•	Tasks synced with Todoist.
+	•	Maintenance log updated with run summary and rollback instructions.
+	•	Atomic git commit created with descriptive message.
+
+⸻
+
+17) Cursor Prompt Templates
+
+Investigation Prompt
+
+You are analyzing a batch of inputs. Provide:
+1. Which buckets they belong to.
+2. Candidate hub(s).
+3. Metadata fields to apply.
+4. Whether any should be split/merged.
+Return this as a structured plan (no changes applied yet).
+
+Dry-Run Prompt
+
+You are simulating changes. Show:
+- Files to create/move.
+- Metadata to add.
+- Hubs to update.
+- Maintenance log entry.
+Do not apply changes yet.
+
+Apply Prompt
+
+You are applying the planned changes. Make the edits, update hubs, add metadata, and write to Maintenance_Log.md. Commit atomically with descriptive message.
+
+
+⸻
+
+Purpose: These rules reframe Cursor’s role from software engineering to knowledge engineering — keeping the vault coherent, searchable, and resilient while preserving provenance and reversibility.
+
+⸻
+
+Do you want me to also produce a sample Maintenance_Log.md entry so you can see how these rules would play out in practice (dry-run → apply → log)?
+
+# Additional Notes (potentially redundant)
+## 0) Purpose and Scope
+Ensure high engineering quality, minimal mistakes, small surgical changes, and fast recovery when things go wrong. These rules apply to all tasks: features, refactors, documentation updates, and hotfixes.
+
+## 1) Precedence and Context
+- **Inherit from devbrain/***: These project rules extend, never contradict the base devbrain system
+- **Conflict resolution**: If conflicts exist, follow devbrain first, then these rules
+- **Context requirement**: Always read `/context/docs/*` before changing related areas. This folder will likely have relevant docs to consider when investigating or planning. `/devbrain-handbook/*` as well.
+- **Documentation first**: Check product roadmap, token economy docs, and known bugs before starting
+
+## 2) Default Working Style
+**Plan first, then code.** Always start with:
+
+1. **File tree scan**: Use grep/ripgrep to find key terms and understand current implementation. You can also use MCP tools found in `mcp.json`. These may be helpful for looking into databases or other matters.
+2. **Impact analysis**: Create short plan listing impacted files, data models, and potential risks
+3. **Testing strategy**: Propose specific tests and a clear rollback plan
+4. **Surgical changes**: Keep changes small, focused, and diff-friendly
+
+## 3) Acceptance Criteria Template (Per Task)
+For every task, define:
+- **Problem statement**: What problem this solves, who benefits, and measurable outcome
+- **Documentation updates**: Which `/context/docs/*` files need updating
+- **Test coverage**: New tests added or existing tests updated
+- **Observability**: Telemetry events and metrics added
+- **Recovery plan**: Backout steps verified and documented
+- **Quality gates**: No new lints or TypeScript errors
+
+## 4) Change Management
+- **Additive approach**: Prefer additive changes over complete rewrites
+- **Risk mitigation**: Feature flag anything risky or user-facing
+- **Database safety**: One schema change per migration, always reversible
+- **Single responsibility**: One clear responsibility per pull request
+- **Verification**: Include a "verification script" or manual test steps in PR description
+
+## 5) Coding Standards
+- **Type safety**: Strong typing everywhere possible, especially at boundaries
+- **Architecture**: Pure functions for business logic, thin controllers for HTTP handling
+- **Security-first**: No client-trusted values for pricing, tokens, or entitlements
+- **Idempotency**: Idempotency keys for any action that can be retried (especially token operations)
+- **Concurrency safety**: Guard against race conditions with transactions or locks
+- **Error handling**: Clear error taxonomy with actionable user messages
+
+## 6) Database and Migrations
+- **Reversibility**: Write migrations that can be safely rolled back
+- **Performance**: Backfill data in batches, never block the main thread
+- **Data integrity**: Add safe defaults and non-null constraints where valid
+- **Concurrency control**: Use `FOR UPDATE` or equivalent for token lots and balances
+- **Validation**: Include a data validation query in PR description
+
+
+## ) Definition of Done Checklist
+Before marking any task complete:
+- [ ] Plan agreed upon and documented in PR comments
+- [ ] Code, tests, and documentation updated
+- [ ] Security considerations reviewed (threat model if applicable)
+- [ ] Telemetry implemented, dashboards updated if needed
+- [ ] Feature flag default value set appropriately
+- [ ] PR description includes test plan and rollback steps
+- [ ] All acceptance criteria met and verified

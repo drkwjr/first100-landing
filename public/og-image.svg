@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#FFFBF7"/>
+  
+  <!-- Decorative circles -->
+  <circle cx="100" cy="100" r="40" fill="#FF9B9B" opacity="0.5"/>
+  <circle cx="1100" cy="530" r="50" fill="#A8D5BA" opacity="0.5"/>
+  <circle cx="200" cy="500" r="30" fill="#FFE5A3" opacity="0.5"/>
+  <circle cx="1000" cy="150" r="35" fill="#B5D8EB" opacity="0.5"/>
+  <circle cx="900" cy="400" r="25" fill="#E8C5E5" opacity="0.5"/>
+  <circle cx="300" cy="200" r="20" fill="#FFD4A3" opacity="0.5"/>
+  <circle cx="800" cy="80" r="28" fill="#C5E8E0" opacity="0.5"/>
+  
+  <!-- Decorative squares -->
+  <rect x="50" y="350" width="40" height="40" rx="8" fill="#FFB5B5" opacity="0.4"/>
+  <rect x="1050" y="250" width="35" height="35" rx="7" fill="#D5C8E8" opacity="0.4"/>
+  <rect x="150" y="450" width="25" height="25" rx="5" fill="#B8E0D2" opacity="0.4"/>
+  
+  <!-- Main content -->
+  <text x="600" y="260" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="700" fill="#2D2A26">First 100</text>
+  <text x="600" y="350" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="32" fill="#6B6560">First Words for Kids</text>
+  <text x="600" y="400" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="28" fill="#4A7C59">in hundreds of languages</text>
+  
+  <!-- Tagline -->
+  <text x="600" y="500" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#8A857F">Tap a picture. Hear the word. No ads.</text>
+</svg>

@@ -1,0 +1,193 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import LanguageCard from '../components/LanguageCard.astro';
+import TrustSignals from '../components/TrustSignals.astro';
+import IllustrationField from '../components/IllustrationField.astro';
+import languageData from '../data/languages.json';
+
+const featuredLanguages = languageData.languages.filter(lang => lang.featured);
+const totalLanguages = languageData.languages.length;
+---
+
+<BaseLayout title="First 100" description="First Words for Kids — in hundreds of languages. Tap a picture. Hear the word. No ads.">
+  <Header slot="header" currentPath="/" />
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <IllustrationField variant="hero" />
+    <div class="hero__content container">
+      <h1 class="hero__headline">
+        First Words for Kids —<br />
+        <span class="hero__headline-accent">in hundreds of languages.</span>
+      </h1>
+      <p class="hero__subheadline">
+        Tap a picture. Hear the word. No ads.
+      </p>
+      <a href="/languages" class="hero__cta">
+        Find your language
+        <svg class="hero__cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+  
+  <!-- Language Preview Section -->
+  <section class="languages-preview">
+    <div class="container">
+      <div class="languages-preview__header">
+        <h2 class="languages-preview__title">Popular Languages</h2>
+        <a href="/languages" class="languages-preview__link">
+          See all {totalLanguages} languages →
+        </a>
+      </div>
+      <div class="languages-preview__grid">
+        {featuredLanguages.map((language) => (
+          <LanguageCard language={language} />
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Trust Signals Section -->
+  <TrustSignals />
+  
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  /* Hero Section */
+  .hero {
+    position: relative;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-20) 0;
+    overflow: hidden;
+  }
+  
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 800px;
+  }
+  
+  .hero__headline {
+    font-size: var(--font-size-5xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    line-height: 1.1;
+    margin-bottom: var(--space-6);
+    letter-spacing: var(--letter-spacing-tight);
+  }
+  
+  .hero__headline-accent {
+    color: var(--color-accent);
+  }
+  
+  .hero__subheadline {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-10);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .hero__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-4) var(--space-8);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-surface);
+    background: var(--color-accent);
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+  }
+  
+  .hero__cta:hover {
+    background: var(--color-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    color: var(--color-surface);
+  }
+  
+  .hero__cta-icon {
+    width: 20px;
+    height: 20px;
+    transition: transform var(--transition-fast);
+  }
+  
+  .hero__cta:hover .hero__cta-icon {
+    transform: translateX(4px);
+  }
+  
+  /* Languages Preview Section */
+  .languages-preview {
+    padding: var(--space-20) 0;
+    background: var(--color-surface);
+  }
+  
+  .languages-preview__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-10);
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+  
+  .languages-preview__title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    margin: 0;
+  }
+  
+  .languages-preview__link {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+  
+  .languages-preview__link:hover {
+    color: var(--color-accent-hover);
+  }
+  
+  .languages-preview__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-6);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero {
+      min-height: 60vh;
+      padding: var(--space-16) 0;
+    }
+    
+    .hero__headline {
+      font-size: var(--font-size-3xl);
+    }
+    
+    .hero__subheadline {
+      font-size: var(--font-size-lg);
+    }
+    
+    .languages-preview__header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

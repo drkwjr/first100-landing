@@ -1,0 +1,201 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import LanguageCard from '../components/LanguageCard.astro';
+import SearchInput from '../components/SearchInput.astro';
+import languageData from '../data/languages.json';
+
+// Sort languages alphabetically and group by first letter
+const sortedLanguages = [...languageData.languages].sort((a, b) => 
+  a.name.localeCompare(b.name)
+);
+
+// Group by first letter
+const groupedLanguages = sortedLanguages.reduce((acc, lang) => {
+  const letter = lang.name[0].toUpperCase();
+  if (!acc[letter]) {
+    acc[letter] = [];
+  }
+  acc[letter].push(lang);
+  return acc;
+}, {} as Record<string, typeof sortedLanguages>);
+
+const letters = Object.keys(groupedLanguages).sort();
+const totalLanguages = languageData.languages.length;
+const availableCount = languageData.languages.filter(l => l.status === 'available').length;
+---
+
+<BaseLayout 
+  title="Languages" 
+  description={`Browse ${totalLanguages} languages available in First 100. Find your language and start teaching first words to your toddler.`}
+>
+  <Header slot="header" currentPath="/languages" />
+  
+  <section class="languages-page">
+    <div class="container">
+      <!-- Page Header -->
+      <header class="languages-page__header">
+        <h1 class="languages-page__title">Languages</h1>
+        <p class="languages-page__subtitle">
+          {availableCount} available now, {totalLanguages - availableCount} coming soon
+        </p>
+      </header>
+      
+      <!-- Search -->
+      <div class="languages-page__search">
+        <SearchInput placeholder="Search languages..." />
+      </div>
+      
+      <!-- Language Directory -->
+      <div class="languages-directory">
+        {letters.map((letter) => (
+          <div class="letter-group" data-letter-group={letter}>
+            <h2 class="letter-group__heading" id={`letter-${letter}`}>{letter}</h2>
+            <div class="letter-group__grid">
+              {groupedLanguages[letter].map((language) => (
+                <LanguageCard language={language} />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <!-- No Results Message (hidden by default) -->
+      <div class="no-results" id="no-results" hidden>
+        <p class="no-results__text">No languages found matching your search.</p>
+        <button type="button" class="no-results__clear" data-clear-search>Clear search</button>
+      </div>
+    </div>
+  </section>
+  
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .languages-page {
+    padding: var(--space-12) 0 var(--space-20);
+    min-height: 70vh;
+  }
+  
+  .languages-page__header {
+    text-align: center;
+    margin-bottom: var(--space-10);
+  }
+  
+  .languages-page__title {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    margin-bottom: var(--space-3);
+  }
+  
+  .languages-page__subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+  
+  .languages-page__search {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--space-12);
+  }
+  
+  .languages-directory {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+  
+  .letter-group__heading {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .letter-group__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-5);
+  }
+  
+  .no-results {
+    text-align: center;
+    padding: var(--space-16) 0;
+  }
+  
+  .no-results__text {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+  }
+  
+  .no-results__clear {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-accent);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color var(--transition-fast);
+  }
+  
+  .no-results__clear:hover {
+    color: var(--color-accent-hover);
+  }
+  
+  .no-results[hidden] {
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    .languages-page__title {
+      font-size: var(--font-size-3xl);
+    }
+    
+    .letter-group__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  // Enhanced search with no-results handling
+  const searchInput = document.querySelector('[data-search]') as HTMLInputElement;
+  const noResults = document.getElementById('no-results');
+  const clearSearchBtn = document.querySelector('[data-clear-search]');
+  
+  function updateNoResultsVisibility() {
+    if (!noResults) return;
+    
+    const visibleCards = document.querySelectorAll('[data-language]:not([style*="display: none"])');
+    noResults.hidden = visibleCards.length > 0;
+  }
+  
+  if (searchInput) {
+    // Create a MutationObserver to detect when cards are hidden/shown
+    const observer = new MutationObserver(updateNoResultsVisibility);
+    
+    document.querySelectorAll('[data-language]').forEach(card => {
+      observer.observe(card, { attributes: true, attributeFilter: ['style'] });
+    });
+    
+    searchInput.addEventListener('input', () => {
+      // Small delay to let the search filtering complete
+      requestAnimationFrame(updateNoResultsVisibility);
+    });
+  }
+  
+  if (clearSearchBtn && searchInput) {
+    clearSearchBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      searchInput.dispatchEvent(new Event('input'));
+      searchInput.focus();
+    });
+  }
+</script>

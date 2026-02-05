@@ -1,0 +1,20 @@
+{
+  "name": "first100-landing",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test": "node --test test/",
+    "generate-illustrations": "node scripts/generate-illustrations.js",
+    "generate-illustrations:dry-run": "node scripts/generate-illustrations.js --dry-run"
+  },
+  "dependencies": {
+    "astro": "^5.2.0"
+  },
+  "devDependencies": {
+    "openai": "^4.77.0"
+  }
+}
