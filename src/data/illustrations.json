@@ -184,7 +184,7 @@
       "id": "kindness",
       "category": "concepts",
       "file": "/illustrations/kindness.png",
-      "generatedAt": "2026-02-08T03:28:59.561Z"
+      "generatedAt": "2026-02-08T03:44:22.440Z"
     },
     {
       "id": "sharing",
@@ -209,6 +209,90 @@
       "category": "objects",
       "file": "/illustrations/gift.png",
       "generatedAt": "2026-02-08T03:30:02.448Z"
+    },
+    {
+      "id": "rocket",
+      "category": "transport",
+      "file": "/illustrations/rocket.png",
+      "generatedAt": "2026-02-08T03:45:06.027Z"
+    },
+    {
+      "id": "bicycle",
+      "category": "transport",
+      "file": "/illustrations/bicycle.png",
+      "generatedAt": "2026-02-08T03:45:22.523Z"
+    },
+    {
+      "id": "train",
+      "category": "transport",
+      "file": "/illustrations/train.png",
+      "generatedAt": "2026-02-08T03:45:39.223Z"
+    },
+    {
+      "id": "airplane",
+      "category": "transport",
+      "file": "/illustrations/airplane.png",
+      "generatedAt": "2026-02-08T03:45:58.547Z"
+    },
+    {
+      "id": "boat",
+      "category": "transport",
+      "file": "/illustrations/boat.png",
+      "generatedAt": "2026-02-08T03:46:14.238Z"
+    },
+    {
+      "id": "backpack",
+      "category": "objects",
+      "file": "/illustrations/backpack.png",
+      "generatedAt": "2026-02-08T03:46:32.073Z"
+    },
+    {
+      "id": "umbrella",
+      "category": "objects",
+      "file": "/illustrations/umbrella.png",
+      "generatedAt": "2026-02-08T03:46:46.941Z"
+    },
+    {
+      "id": "toothbrush",
+      "category": "objects",
+      "file": "/illustrations/toothbrush.png",
+      "generatedAt": "2026-02-08T03:47:20.979Z"
+    },
+    {
+      "id": "spoon",
+      "category": "objects",
+      "file": "/illustrations/spoon.png",
+      "generatedAt": "2026-02-08T03:47:39.593Z"
+    },
+    {
+      "id": "glasses",
+      "category": "objects",
+      "file": "/illustrations/glasses.png",
+      "generatedAt": "2026-02-08T03:47:54.026Z"
+    },
+    {
+      "id": "puzzle",
+      "category": "toys",
+      "file": "/illustrations/puzzle.png",
+      "generatedAt": "2026-02-08T03:48:08.758Z"
+    },
+    {
+      "id": "drum",
+      "category": "toys",
+      "file": "/illustrations/drum.png",
+      "generatedAt": "2026-02-08T03:48:23.612Z"
+    },
+    {
+      "id": "kite",
+      "category": "toys",
+      "file": "/illustrations/kite.png",
+      "generatedAt": "2026-02-08T03:48:41.006Z"
+    },
+    {
+      "id": "telescope",
+      "category": "objects",
+      "file": "/illustrations/telescope.png",
+      "generatedAt": "2026-02-08T03:49:01.940Z"
     }
   ]
 }

@@ -379,8 +379,107 @@
       "successCount": 19,
       "failCount": 0,
       "estimatedCost": 0.76
+    },
+    {
+      "timestamp": "2026-02-08T03:44:08.517Z",
+      "objects": [
+        {
+          "id": "kindness",
+          "success": true,
+          "file": "public/illustrations/kindness.png"
+        }
+      ],
+      "successCount": 1,
+      "failCount": 0,
+      "estimatedCost": 0.04
+    },
+    {
+      "timestamp": "2026-02-08T03:44:48.925Z",
+      "objects": [
+        {
+          "id": "rocket",
+          "success": true,
+          "file": "public/illustrations/rocket.png"
+        },
+        {
+          "id": "bicycle",
+          "success": true,
+          "file": "public/illustrations/bicycle.png"
+        },
+        {
+          "id": "train",
+          "success": true,
+          "file": "public/illustrations/train.png"
+        },
+        {
+          "id": "airplane",
+          "success": true,
+          "file": "public/illustrations/airplane.png"
+        },
+        {
+          "id": "boat",
+          "success": true,
+          "file": "public/illustrations/boat.png"
+        },
+        {
+          "id": "backpack",
+          "success": true,
+          "file": "public/illustrations/backpack.png"
+        },
+        {
+          "id": "umbrella",
+          "success": true,
+          "file": "public/illustrations/umbrella.png"
+        }
+      ],
+      "successCount": 7,
+      "failCount": 0,
+      "estimatedCost": 0.28
+    },
+    {
+      "timestamp": "2026-02-08T03:47:07.621Z",
+      "objects": [
+        {
+          "id": "toothbrush",
+          "success": true,
+          "file": "public/illustrations/toothbrush.png"
+        },
+        {
+          "id": "spoon",
+          "success": true,
+          "file": "public/illustrations/spoon.png"
+        },
+        {
+          "id": "glasses",
+          "success": true,
+          "file": "public/illustrations/glasses.png"
+        },
+        {
+          "id": "puzzle",
+          "success": true,
+          "file": "public/illustrations/puzzle.png"
+        },
+        {
+          "id": "drum",
+          "success": true,
+          "file": "public/illustrations/drum.png"
+        },
+        {
+          "id": "kite",
+          "success": true,
+          "file": "public/illustrations/kite.png"
+        },
+        {
+          "id": "telescope",
+          "success": true,
+          "file": "public/illustrations/telescope.png"
+        }
+      ],
+      "successCount": 7,
+      "failCount": 0,
+      "estimatedCost": 0.28
     }
   ],
-  "totalSpent": 2.4000000000000004,
-  "totalGenerated": 56
+  "totalSpent": 3.000000000000001,
+  "totalGenerated": 71
 }

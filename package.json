@@ -9,7 +9,8 @@
     "preview": "astro preview",
     "test": "node --test test/",
     "generate-illustrations": "node scripts/generate-illustrations.js",
-    "generate-illustrations:dry-run": "node scripts/generate-illustrations.js --dry-run"
+    "generate-illustrations:dry-run": "node scripts/generate-illustrations.js --dry-run",
+    "generate-word-translations": "node scripts/generate-word-translations.js"
   },
   "dependencies": {
     "astro": "^5.2.0"

@@ -92,13 +92,31 @@ export const OBJECTS = [
   // Concepts
   { id: 'love', prompt: 'Two overlapping heart shapes, pink and red, simple and soft', category: 'concepts' },
   { id: 'friendship', prompt: 'Two friendly child-like figures standing side by side with arms around each other', category: 'concepts' },
-  { id: 'kindness', prompt: 'Two open hands gently holding a small heart', category: 'concepts' },
+  { id: 'kindness', prompt: 'Two open hands with dark brown skin tones gently holding a small heart', category: 'concepts' },
   { id: 'sharing', prompt: 'Two hands passing a toy block to each other', category: 'concepts' },
 
   // Objects
   { id: 'clock', prompt: 'A simple round wall clock with short and long hands, pastel frame', category: 'objects' },
   { id: 'key', prompt: 'A classic simple key, golden color with a rounded head', category: 'objects' },
   { id: 'gift', prompt: 'A wrapped gift box with a ribbon bow, red and cream colors', category: 'objects' },
+
+  // Transport & everyday objects
+  { id: 'rocket', prompt: 'A simple toy rocket, red and white, upright with rounded fins', category: 'transport' },
+  { id: 'bicycle', prompt: 'A child bicycle in side view, blue frame with simple wheels', category: 'transport' },
+  { id: 'train', prompt: 'A friendly toy train engine, side view, colorful and rounded', category: 'transport' },
+  { id: 'airplane', prompt: 'A small passenger airplane in side view, simple rounded shape', category: 'transport' },
+  { id: 'boat', prompt: 'A small sailboat with one triangular sail, simple child-friendly style', category: 'transport' },
+  { id: 'backpack', prompt: 'A child backpack, teal with a front pocket and rounded top', category: 'objects' },
+  { id: 'umbrella', prompt: 'A simple open umbrella, rainbow colors with curved handle', category: 'objects' },
+
+  // More variety set
+  { id: 'toothbrush', prompt: 'A child toothbrush, blue and white with soft bristles', category: 'objects' },
+  { id: 'spoon', prompt: 'A single spoon, silver with rounded handle', category: 'objects' },
+  { id: 'glasses', prompt: 'A pair of round eyeglasses, friendly simple frame', category: 'objects' },
+  { id: 'puzzle', prompt: 'A jigsaw puzzle piece, bright green with rounded tabs', category: 'toys' },
+  { id: 'drum', prompt: 'A small toy drum with two drumsticks crossed on top', category: 'toys' },
+  { id: 'kite', prompt: 'A diamond kite with a tail and bows, bright friendly colors', category: 'toys' },
+  { id: 'telescope', prompt: 'A child telescope on a simple tripod, blue and orange', category: 'objects' },
   
   // Clothing & Body
   { id: 'shoe', prompt: 'A single child sneaker shoe, red with white sole, side view', category: 'clothing' },

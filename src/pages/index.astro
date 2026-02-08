@@ -15,7 +15,6 @@ const featuredLanguages = languageData.languages
   .sort((a, b) => (a.status === 'available' ? 0 : 1) - (b.status === 'available' ? 0 : 1));
 const totalLanguages = languageData.languages.length;
 const railStickers = stickerData.stickers;
-const stickerWordCount = stickerData.stickers.length;
 ---
 
 <BaseLayout title="First 100" description="First Words for Kids — in hundreds of languages. Tap a picture. Hear the word. No ads.">
@@ -45,7 +44,12 @@ const stickerWordCount = stickerData.stickers.length;
   <section class="sticker-rail" aria-label="Sticker translations preview">
     <div class="container">
       <StickerSet variant="rail" stickers={railStickers} />
-      <p class="sticker-rail__more">Showing {stickerWordCount} sample words. Many more categories are coming.</p>
+      <div class="sticker-rail__pitch" role="note" aria-label="Learning value">
+        <p class="sticker-rail__eyebrow">Built for real family language moments</p>
+        <p class="sticker-rail__title">Children learn faster when they hear first words in the language of home.</p>
+        <p class="sticker-rail__copy">From feelings and food to playtime and routines, each word is designed to feel familiar, clear, and joyful.</p>
+        <a href="/languages" class="sticker-rail__cta">Choose your language</a>
+      </div>
     </div>
   </section>
   
@@ -155,17 +159,62 @@ const stickerWordCount = stickerData.stickers.length;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), var(--color-surface));
   }
 
-  .sticker-rail__more {
-    margin: var(--space-2) auto 0;
-    width: fit-content;
-    max-width: 560px;
-    padding: 6px 14px;
-    border-radius: var(--radius-full);
-    border: 1px dashed rgba(48, 92, 67, 0.22);
-    background: linear-gradient(180deg, rgba(48, 92, 67, 0.05), rgba(48, 92, 67, 0.02));
+  .sticker-rail__pitch {
+    margin: var(--space-6) auto 0;
+    max-width: 760px;
+    padding: var(--space-6) var(--space-7);
+    border: 1px solid rgba(48, 92, 67, 0.18);
+    border-radius: var(--radius-2xl);
+    background: linear-gradient(135deg, rgba(241, 250, 244, 0.95), rgba(252, 255, 250, 0.98));
+    box-shadow: 0 12px 32px rgba(48, 92, 67, 0.08);
+    text-align: center;
+  }
+
+  .sticker-rail__eyebrow {
+    margin: 0 0 var(--space-2);
+    color: rgba(48, 92, 67, 0.86);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.72rem;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .sticker-rail__title {
+    margin: 0;
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    line-height: 1.35;
+    color: rgba(24, 41, 33, 0.95);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .sticker-rail__copy {
+    margin: var(--space-3) auto 0;
+    max-width: 620px;
     color: var(--color-text-muted);
     font-size: var(--font-size-sm);
-    text-align: center;
+    line-height: 1.55;
+  }
+
+  .sticker-rail__cta {
+    margin-top: var(--space-4);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-sm);
+    color: var(--color-surface);
+    background: linear-gradient(180deg, var(--color-accent), #2f6f4f);
+    box-shadow: 0 8px 20px rgba(47, 111, 79, 0.3);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .sticker-rail__cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(47, 111, 79, 0.35);
+    color: var(--color-surface);
   }
   
   .languages-preview__header {
@@ -211,6 +260,12 @@ const stickerWordCount = stickerData.stickers.length;
 
     .sticker-rail {
       padding-bottom: var(--space-8);
+    }
+
+    .sticker-rail__pitch {
+      margin-top: var(--space-5);
+      padding: var(--space-5);
+      border-radius: var(--radius-xl);
     }
     
     .hero__headline {

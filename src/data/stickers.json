@@ -34,6 +34,20 @@
     { "id": "sharing", "label": "Sharing" },
     { "id": "clock", "label": "Clock" },
     { "id": "key", "label": "Key" },
-    { "id": "gift", "label": "Gift" }
+    { "id": "gift", "label": "Gift" },
+    { "id": "rocket", "label": "Rocket" },
+    { "id": "bicycle", "label": "Bicycle" },
+    { "id": "train", "label": "Train" },
+    { "id": "airplane", "label": "Airplane" },
+    { "id": "boat", "label": "Boat" },
+    { "id": "backpack", "label": "Backpack" },
+    { "id": "umbrella", "label": "Umbrella" },
+    { "id": "toothbrush", "label": "Toothbrush" },
+    { "id": "spoon", "label": "Spoon" },
+    { "id": "glasses", "label": "Glasses" },
+    { "id": "puzzle", "label": "Puzzle" },
+    { "id": "drum", "label": "Drum" },
+    { "id": "kite", "label": "Kite" },
+    { "id": "telescope", "label": "Telescope" }
   ]
 }
