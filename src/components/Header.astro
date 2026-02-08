@@ -1,21 +1,30 @@
 ---
+import { withBase } from '../utils/withBase';
+
 interface Props {
   currentPath?: string;
 }
 
 const { currentPath = '' } = Astro.props;
+const homePath = withBase('/');
+const languagesPath = withBase('/languages');
+const basePrefix = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '');
+const normalizedCurrentPath =
+  basePrefix && currentPath.startsWith(basePrefix)
+    ? currentPath.slice(basePrefix.length) || '/'
+    : currentPath;
 ---
 
 <header class="header">
   <div class="header__container container">
-    <a href="/" class="header__logo" aria-label="First 100 - Home">
+    <a href={homePath} class="header__logo" aria-label="First 100 - Home">
       <span class="header__logo-text">First 100</span>
     </a>
     
     <nav class="header__nav" aria-label="Main navigation">
       <a 
-        href="/languages" 
-        class:list={["header__nav-link", { "header__nav-link--active": currentPath.startsWith('/languages') || currentPath.startsWith('/l/') }]}
+        href={languagesPath}
+        class:list={["header__nav-link", { "header__nav-link--active": normalizedCurrentPath.startsWith('/languages') || normalizedCurrentPath.startsWith('/l/') }]}
       >
         Languages
       </a>

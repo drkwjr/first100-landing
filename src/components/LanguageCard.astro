@@ -1,5 +1,6 @@
 ---
 import StoreButtons from './StoreButtons.astro';
+import { withBase } from '../utils/withBase';
 
 interface Language {
   slug: string;
@@ -18,6 +19,7 @@ interface Props {
 
 const { language, showLink = true } = Astro.props;
 const { slug, name, nativeName, status, appStore, playStore } = language;
+const languagePath = withBase(`/l/${slug}`);
 ---
 
 <article 
@@ -26,7 +28,7 @@ const { slug, name, nativeName, status, appStore, playStore } = language;
 >
   <div class="language-card__content">
     {showLink ? (
-      <a href={`/l/${slug}`} class="language-card__link">
+      <a href={languagePath} class="language-card__link">
         <h3 class="language-card__name">{name}</h3>
         {nativeName && nativeName !== name && (
           <p class="language-card__native">{nativeName}</p>

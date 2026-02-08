@@ -1,5 +1,9 @@
 ---
+import { withBase } from '../utils/withBase';
+
 const currentYear = new Date().getFullYear();
+const languagesPath = withBase('/languages');
+const privacyPath = withBase('/privacy');
 ---
 
 <footer class="footer">
@@ -10,8 +14,8 @@ const currentYear = new Date().getFullYear();
     </div>
     
     <nav class="footer__links" aria-label="Footer navigation">
-      <a href="/languages" class="footer__link">Languages</a>
-      <a href="/privacy" class="footer__link">Privacy</a>
+      <a href={languagesPath} class="footer__link">Languages</a>
+      <a href={privacyPath} class="footer__link">Privacy</a>
       <a href="mailto:hello@first100.app" class="footer__link">Contact</a>
     </nav>
     

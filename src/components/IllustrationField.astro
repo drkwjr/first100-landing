@@ -15,6 +15,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { withBase } from '../utils/withBase';
 
 interface Props {
   variant?: 'hero' | 'dense' | 'minimal';
@@ -131,7 +132,7 @@ const selectedIllustrations = positions.map((pos, i) => {
       >
         {realId ? (
           <img
-            src={`/illustrations/${realId}.${getIllustrationExt(realId)}`}
+            src={withBase(`/illustrations/${realId}.${getIllustrationExt(realId)}`)}
             alt="Decorative illustration"
             title={realId ? `${realId} illustration` : undefined}
             width={displaySize}

@@ -18,6 +18,12 @@ npm run build
 npm run preview
 ```
 
+If deploying under a subpath (for example GitHub Pages project sites), set `ASTRO_BASE_PATH` before building:
+
+```bash
+ASTRO_BASE_PATH=/first100-landing npm run build
+```
+
 ## Testing and verification
 
 ### Run tests

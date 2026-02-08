@@ -24,6 +24,8 @@ dist/
 
 # OS files
 .DS_Store
+._*
+.AppleDouble
 Thumbs.db
 
 # Logs

@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import languageData from '../data/languages.json';
 import wordTranslations from '../data/word-translations.json';
+import { withBase } from '../utils/withBase';
 
 interface StickerItem {
   id: string;
@@ -61,7 +62,7 @@ function getTranslations(wordId: string) {
       aria-label={`${sticker.label} sticker`}
     >
       <img
-        src={`/illustrations/${sticker.id}.${getIllustrationExt(sticker.id)}`}
+        src={withBase(`/illustrations/${sticker.id}.${getIllustrationExt(sticker.id)}`)}
         alt={sticker.label}
         loading="lazy"
         decoding="async"

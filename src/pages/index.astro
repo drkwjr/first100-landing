@@ -6,6 +6,7 @@ import LanguageCard from '../components/LanguageCard.astro';
 import TrustSignals from '../components/TrustSignals.astro';
 import IllustrationField from '../components/IllustrationField.astro';
 import StickerSet from '../components/StickerSet.astro';
+import { withBase } from '../utils/withBase';
 import languageData from '../data/languages.json';
 import stickerData from '../data/stickers.json';
 
@@ -15,6 +16,7 @@ const featuredLanguages = languageData.languages
   .sort((a, b) => (a.status === 'available' ? 0 : 1) - (b.status === 'available' ? 0 : 1));
 const totalLanguages = languageData.languages.length;
 const railStickers = stickerData.stickers;
+const languagesPath = withBase('/languages');
 ---
 
 <BaseLayout title="First 100" description="First Words for Kids — in your home language. Tap a picture. Hear the word. No ads.">
@@ -31,7 +33,7 @@ const railStickers = stickerData.stickers;
       <p class="hero__subheadline">
         Tap a picture. Hear the word. No ads.
       </p>
-      <a href="/languages" class="hero__cta">
+      <a href={languagesPath} class="hero__cta">
         Find your language
         <svg class="hero__cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <line x1="5" y1="12" x2="19" y2="12"/>
@@ -48,7 +50,7 @@ const railStickers = stickerData.stickers;
         <p class="sticker-rail__eyebrow">Designed For Early Fluency</p>
         <p class="sticker-rail__title">Give families a first-words experience that feels personal, trusted, and ready from day one.</p>
         <p class="sticker-rail__copy">Clean visuals, native-word audio, and culturally familiar vocabulary help children connect faster and keep practicing.</p>
-        <a href="/languages" class="sticker-rail__cta">See Available Languages</a>
+        <a href={languagesPath} class="sticker-rail__cta">See Available Languages</a>
       </div>
     </div>
   </section>
@@ -58,7 +60,7 @@ const railStickers = stickerData.stickers;
     <div class="container">
       <div class="languages-preview__header">
         <h2 class="languages-preview__title">Popular Languages</h2>
-        <a href="/languages" class="languages-preview__link">
+        <a href={languagesPath} class="languages-preview__link">
           See all {totalLanguages} languages →
         </a>
       </div>
