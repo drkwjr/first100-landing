@@ -5,13 +5,17 @@ import Footer from '../components/Footer.astro';
 import LanguageCard from '../components/LanguageCard.astro';
 import TrustSignals from '../components/TrustSignals.astro';
 import IllustrationField from '../components/IllustrationField.astro';
+import StickerSet from '../components/StickerSet.astro';
 import languageData from '../data/languages.json';
+import stickerData from '../data/stickers.json';
 
 // Featured languages: available first, then coming-soon (homepage only)
 const featuredLanguages = languageData.languages
   .filter(lang => lang.featured)
   .sort((a, b) => (a.status === 'available' ? 0 : 1) - (b.status === 'available' ? 0 : 1));
 const totalLanguages = languageData.languages.length;
+const railStickers = stickerData.stickers;
+const stickerWordCount = stickerData.stickers.length;
 ---
 
 <BaseLayout title="First 100" description="First Words for Kids — in hundreds of languages. Tap a picture. Hear the word. No ads.">
@@ -19,7 +23,7 @@ const totalLanguages = languageData.languages.length;
   
   <!-- Hero Section -->
   <section class="hero">
-    <IllustrationField variant="hero" realIllustrationIds={['bear']} />
+    <IllustrationField variant="hero" />
     <div class="hero__content container">
       <h1 class="hero__headline">
         First Words for Kids —<br />
@@ -35,6 +39,13 @@ const totalLanguages = languageData.languages.length;
           <polyline points="12 5 19 12 12 19"/>
         </svg>
       </a>
+    </div>
+  </section>
+
+  <section class="sticker-rail" aria-label="Sticker translations preview">
+    <div class="container">
+      <StickerSet variant="rail" stickers={railStickers} />
+      <p class="sticker-rail__more">Showing {stickerWordCount} sample words. Many more categories are coming.</p>
     </div>
   </section>
   
@@ -138,6 +149,24 @@ const totalLanguages = languageData.languages.length;
     padding: var(--space-20) 0;
     background: var(--color-surface);
   }
+
+  .sticker-rail {
+    padding: var(--space-4) 0 var(--space-10);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), var(--color-surface));
+  }
+
+  .sticker-rail__more {
+    margin: var(--space-2) auto 0;
+    width: fit-content;
+    max-width: 560px;
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    border: 1px dashed rgba(48, 92, 67, 0.22);
+    background: linear-gradient(180deg, rgba(48, 92, 67, 0.05), rgba(48, 92, 67, 0.02));
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    text-align: center;
+  }
   
   .languages-preview__header {
     display: flex;
@@ -178,6 +207,10 @@ const totalLanguages = languageData.languages.length;
     .hero {
       min-height: 60vh;
       padding: var(--space-16) 0;
+    }
+
+    .sticker-rail {
+      padding-bottom: var(--space-8);
     }
     
     .hero__headline {

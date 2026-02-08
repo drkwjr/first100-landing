@@ -5,6 +5,210 @@
       "category": "animals",
       "file": "/illustrations/bear.png",
       "generatedAt": "2026-02-07T22:49:28.399Z"
+    },
+    {
+      "id": "cat",
+      "category": "animals",
+      "file": "/illustrations/cat.png",
+      "generatedAt": "2026-02-08T02:48:01.311Z"
+    },
+    {
+      "id": "dog",
+      "category": "animals",
+      "file": "/illustrations/dog.png",
+      "generatedAt": "2026-02-08T02:48:17.978Z"
+    },
+    {
+      "id": "bird",
+      "category": "animals",
+      "file": "/illustrations/bird.png",
+      "generatedAt": "2026-02-08T02:48:33.462Z"
+    },
+    {
+      "id": "fish",
+      "category": "animals",
+      "file": "/illustrations/fish.png",
+      "generatedAt": "2026-02-08T02:48:49.830Z"
+    },
+    {
+      "id": "apple",
+      "category": "food",
+      "file": "/illustrations/apple.png",
+      "generatedAt": "2026-02-08T02:49:04.472Z"
+    },
+    {
+      "id": "banana",
+      "category": "food",
+      "file": "/illustrations/banana.png",
+      "generatedAt": "2026-02-08T02:49:19.549Z"
+    },
+    {
+      "id": "ball",
+      "category": "toys",
+      "file": "/illustrations/ball.png",
+      "generatedAt": "2026-02-08T02:49:35.332Z"
+    },
+    {
+      "id": "blocks",
+      "category": "toys",
+      "file": "/illustrations/blocks.png",
+      "generatedAt": "2026-02-08T02:49:49.961Z"
+    },
+    {
+      "id": "star",
+      "category": "shapes",
+      "file": "/illustrations/star.png",
+      "generatedAt": "2026-02-08T02:50:06.541Z"
+    },
+    {
+      "id": "heart",
+      "category": "shapes",
+      "file": "/illustrations/heart.png",
+      "generatedAt": "2026-02-08T02:50:22.651Z"
+    },
+    {
+      "id": "moon",
+      "category": "nature",
+      "file": "/illustrations/moon.png",
+      "generatedAt": "2026-02-08T02:50:37.762Z"
+    },
+    {
+      "id": "sun",
+      "category": "nature",
+      "file": "/illustrations/sun.png",
+      "generatedAt": "2026-02-08T02:51:17.146Z"
+    },
+    {
+      "id": "flower",
+      "category": "nature",
+      "file": "/illustrations/flower.png",
+      "generatedAt": "2026-02-08T02:51:30.888Z"
+    },
+    {
+      "id": "tree",
+      "category": "nature",
+      "file": "/illustrations/tree.png",
+      "generatedAt": "2026-02-08T02:51:47.016Z"
+    },
+    {
+      "id": "cloud",
+      "category": "nature",
+      "file": "/illustrations/cloud.png",
+      "generatedAt": "2026-02-08T02:52:02.352Z"
+    },
+    {
+      "id": "one",
+      "category": "numbers",
+      "file": "/illustrations/one.png",
+      "generatedAt": "2026-02-08T03:25:22.303Z"
+    },
+    {
+      "id": "two",
+      "category": "numbers",
+      "file": "/illustrations/two.png",
+      "generatedAt": "2026-02-08T03:25:36.812Z"
+    },
+    {
+      "id": "three",
+      "category": "numbers",
+      "file": "/illustrations/three.png",
+      "generatedAt": "2026-02-08T03:25:51.739Z"
+    },
+    {
+      "id": "four",
+      "category": "numbers",
+      "file": "/illustrations/four.png",
+      "generatedAt": "2026-02-08T03:26:07.559Z"
+    },
+    {
+      "id": "five",
+      "category": "numbers",
+      "file": "/illustrations/five.png",
+      "generatedAt": "2026-02-08T03:26:21.954Z"
+    },
+    {
+      "id": "six",
+      "category": "numbers",
+      "file": "/illustrations/six.png",
+      "generatedAt": "2026-02-08T03:26:35.462Z"
+    },
+    {
+      "id": "seven",
+      "category": "numbers",
+      "file": "/illustrations/seven.png",
+      "generatedAt": "2026-02-08T03:26:50.257Z"
+    },
+    {
+      "id": "eight",
+      "category": "numbers",
+      "file": "/illustrations/eight.png",
+      "generatedAt": "2026-02-08T03:27:07.043Z"
+    },
+    {
+      "id": "happy",
+      "category": "feelings",
+      "file": "/illustrations/happy.png",
+      "generatedAt": "2026-02-08T03:27:22.192Z"
+    },
+    {
+      "id": "sad",
+      "category": "feelings",
+      "file": "/illustrations/sad.png",
+      "generatedAt": "2026-02-08T03:27:36.807Z"
+    },
+    {
+      "id": "excited",
+      "category": "feelings",
+      "file": "/illustrations/excited.png",
+      "generatedAt": "2026-02-08T03:27:51.388Z"
+    },
+    {
+      "id": "calm",
+      "category": "feelings",
+      "file": "/illustrations/calm.png",
+      "generatedAt": "2026-02-08T03:28:06.084Z"
+    },
+    {
+      "id": "love",
+      "category": "concepts",
+      "file": "/illustrations/love.png",
+      "generatedAt": "2026-02-08T03:28:27.592Z"
+    },
+    {
+      "id": "friendship",
+      "category": "concepts",
+      "file": "/illustrations/friendship.png",
+      "generatedAt": "2026-02-08T03:28:42.841Z"
+    },
+    {
+      "id": "kindness",
+      "category": "concepts",
+      "file": "/illustrations/kindness.png",
+      "generatedAt": "2026-02-08T03:28:59.561Z"
+    },
+    {
+      "id": "sharing",
+      "category": "concepts",
+      "file": "/illustrations/sharing.png",
+      "generatedAt": "2026-02-08T03:29:15.367Z"
+    },
+    {
+      "id": "clock",
+      "category": "objects",
+      "file": "/illustrations/clock.png",
+      "generatedAt": "2026-02-08T03:29:31.652Z"
+    },
+    {
+      "id": "key",
+      "category": "objects",
+      "file": "/illustrations/key.png",
+      "generatedAt": "2026-02-08T03:29:47.401Z"
+    },
+    {
+      "id": "gift",
+      "category": "objects",
+      "file": "/illustrations/gift.png",
+      "generatedAt": "2026-02-08T03:30:02.448Z"
     }
   ]
 }

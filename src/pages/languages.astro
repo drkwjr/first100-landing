@@ -4,7 +4,9 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import LanguageCard from '../components/LanguageCard.astro';
 import SearchInput from '../components/SearchInput.astro';
+import StickerSet from '../components/StickerSet.astro';
 import languageData from '../data/languages.json';
+import stickerData from '../data/stickers.json';
 
 // Sort languages alphabetically and group by first letter
 const sortedLanguages = [...languageData.languages].sort((a, b) => 
@@ -24,6 +26,7 @@ const groupedLanguages = sortedLanguages.reduce((acc, lang) => {
 const letters = Object.keys(groupedLanguages).sort();
 const totalLanguages = languageData.languages.length;
 const availableCount = languageData.languages.filter(l => l.status === 'available').length;
+const headerStickers = stickerData.stickers.slice(8, 13);
 ---
 
 <BaseLayout 
@@ -40,6 +43,9 @@ const availableCount = languageData.languages.filter(l => l.status === 'availabl
         <p class="languages-page__subtitle">
           {availableCount} available now, {totalLanguages - availableCount} coming soon
         </p>
+        <div class="languages-page__stickers" aria-hidden="true">
+          <StickerSet variant="cluster" stickers={headerStickers} />
+        </div>
       </header>
       
       <!-- Search -->
@@ -79,8 +85,17 @@ const availableCount = languageData.languages.filter(l => l.status === 'availabl
   }
   
   .languages-page__header {
+    position: relative;
     text-align: center;
     margin-bottom: var(--space-10);
+  }
+
+  .languages-page__stickers {
+    position: absolute;
+    top: -18px;
+    right: -10px;
+    max-width: 260px;
+    opacity: 0.9;
   }
   
   .languages-page__title {
@@ -156,6 +171,13 @@ const availableCount = languageData.languages.filter(l => l.status === 'availabl
   @media (max-width: 768px) {
     .languages-page__title {
       font-size: var(--font-size-3xl);
+    }
+
+    .languages-page__stickers {
+      position: static;
+      margin-top: var(--space-6);
+      max-width: none;
+      justify-content: center;
     }
     
     .letter-group__grid {

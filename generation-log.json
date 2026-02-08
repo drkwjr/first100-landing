@@ -90,8 +90,297 @@
       "successCount": 1,
       "failCount": 0,
       "estimatedCost": 0.04
+    },
+    {
+      "timestamp": "2026-02-08T02:47:43.857Z",
+      "objects": [
+        {
+          "id": "cat",
+          "success": true,
+          "file": "public/illustrations/cat.png"
+        },
+        {
+          "id": "dog",
+          "success": true,
+          "file": "public/illustrations/dog.png"
+        },
+        {
+          "id": "bird",
+          "success": true,
+          "file": "public/illustrations/bird.png"
+        },
+        {
+          "id": "fish",
+          "success": true,
+          "file": "public/illustrations/fish.png"
+        },
+        {
+          "id": "apple",
+          "success": true,
+          "file": "public/illustrations/apple.png"
+        },
+        {
+          "id": "banana",
+          "success": true,
+          "file": "public/illustrations/banana.png"
+        },
+        {
+          "id": "ball",
+          "success": true,
+          "file": "public/illustrations/ball.png"
+        },
+        {
+          "id": "blocks",
+          "success": true,
+          "file": "public/illustrations/blocks.png"
+        },
+        {
+          "id": "star",
+          "success": true,
+          "file": "public/illustrations/star.png"
+        },
+        {
+          "id": "heart",
+          "success": true,
+          "file": "public/illustrations/heart.png"
+        },
+        {
+          "id": "moon",
+          "success": true,
+          "file": "public/illustrations/moon.png"
+        },
+        {
+          "id": "sun",
+          "success": true,
+          "file": "public/illustrations/sun.png"
+        },
+        {
+          "id": "flower",
+          "success": true,
+          "file": "public/illustrations/flower.png"
+        },
+        {
+          "id": "tree",
+          "success": true,
+          "file": "public/illustrations/tree.png"
+        },
+        {
+          "id": "cloud",
+          "success": true,
+          "file": "public/illustrations/cloud.png"
+        }
+      ],
+      "successCount": 15,
+      "failCount": 0,
+      "estimatedCost": 0.6
+    },
+    {
+      "timestamp": "2026-02-08T03:15:17.537Z",
+      "objects": [
+        {
+          "id": "one",
+          "success": true,
+          "file": "public/illustrations/one.png"
+        },
+        {
+          "id": "two",
+          "success": true,
+          "file": "public/illustrations/two.png"
+        },
+        {
+          "id": "three",
+          "success": true,
+          "file": "public/illustrations/three.png"
+        },
+        {
+          "id": "four",
+          "success": true,
+          "file": "public/illustrations/four.png"
+        },
+        {
+          "id": "five",
+          "success": true,
+          "file": "public/illustrations/five.png"
+        },
+        {
+          "id": "six",
+          "success": true,
+          "file": "public/illustrations/six.png"
+        },
+        {
+          "id": "seven",
+          "success": true,
+          "file": "public/illustrations/seven.png"
+        },
+        {
+          "id": "eight",
+          "success": true,
+          "file": "public/illustrations/eight.png"
+        },
+        {
+          "id": "happy",
+          "success": true,
+          "file": "public/illustrations/happy.png"
+        },
+        {
+          "id": "sad",
+          "success": true,
+          "file": "public/illustrations/sad.png"
+        },
+        {
+          "id": "excited",
+          "success": true,
+          "file": "public/illustrations/excited.png"
+        },
+        {
+          "id": "calm",
+          "success": true,
+          "file": "public/illustrations/calm.png"
+        },
+        {
+          "id": "love",
+          "success": true,
+          "file": "public/illustrations/love.png"
+        },
+        {
+          "id": "friendship",
+          "success": true,
+          "file": "public/illustrations/friendship.png"
+        },
+        {
+          "id": "kindness",
+          "success": true,
+          "file": "public/illustrations/kindness.png"
+        },
+        {
+          "id": "sharing",
+          "success": true,
+          "file": "public/illustrations/sharing.png"
+        },
+        {
+          "id": "clock",
+          "success": true,
+          "file": "public/illustrations/clock.png"
+        },
+        {
+          "id": "key",
+          "success": true,
+          "file": "public/illustrations/key.png"
+        },
+        {
+          "id": "gift",
+          "success": true,
+          "file": "public/illustrations/gift.png"
+        }
+      ],
+      "successCount": 19,
+      "failCount": 0,
+      "estimatedCost": 0.76
+    },
+    {
+      "timestamp": "2026-02-08T03:25:08.439Z",
+      "objects": [
+        {
+          "id": "one",
+          "success": true,
+          "file": "public/illustrations/one.png"
+        },
+        {
+          "id": "two",
+          "success": true,
+          "file": "public/illustrations/two.png"
+        },
+        {
+          "id": "three",
+          "success": true,
+          "file": "public/illustrations/three.png"
+        },
+        {
+          "id": "four",
+          "success": true,
+          "file": "public/illustrations/four.png"
+        },
+        {
+          "id": "five",
+          "success": true,
+          "file": "public/illustrations/five.png"
+        },
+        {
+          "id": "six",
+          "success": true,
+          "file": "public/illustrations/six.png"
+        },
+        {
+          "id": "seven",
+          "success": true,
+          "file": "public/illustrations/seven.png"
+        },
+        {
+          "id": "eight",
+          "success": true,
+          "file": "public/illustrations/eight.png"
+        },
+        {
+          "id": "happy",
+          "success": true,
+          "file": "public/illustrations/happy.png"
+        },
+        {
+          "id": "sad",
+          "success": true,
+          "file": "public/illustrations/sad.png"
+        },
+        {
+          "id": "excited",
+          "success": true,
+          "file": "public/illustrations/excited.png"
+        },
+        {
+          "id": "calm",
+          "success": true,
+          "file": "public/illustrations/calm.png"
+        },
+        {
+          "id": "love",
+          "success": true,
+          "file": "public/illustrations/love.png"
+        },
+        {
+          "id": "friendship",
+          "success": true,
+          "file": "public/illustrations/friendship.png"
+        },
+        {
+          "id": "kindness",
+          "success": true,
+          "file": "public/illustrations/kindness.png"
+        },
+        {
+          "id": "sharing",
+          "success": true,
+          "file": "public/illustrations/sharing.png"
+        },
+        {
+          "id": "clock",
+          "success": true,
+          "file": "public/illustrations/clock.png"
+        },
+        {
+          "id": "key",
+          "success": true,
+          "file": "public/illustrations/key.png"
+        },
+        {
+          "id": "gift",
+          "success": true,
+          "file": "public/illustrations/gift.png"
+        }
+      ],
+      "successCount": 19,
+      "failCount": 0,
+      "estimatedCost": 0.76
     }
   ],
-  "totalSpent": 0.28,
-  "totalGenerated": 3
+  "totalSpent": 2.4000000000000004,
+  "totalGenerated": 56
 }

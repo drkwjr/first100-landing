@@ -96,12 +96,14 @@ const minimalPositions = [
 
 const positions = variant === 'dense' ? densePositions : variant === 'minimal' ? minimalPositions : heroPositions;
 
-// Real illustration slot: index 4 = upper-mid hero (55% from left, 10% from top) — visible but not on top of headline
+// Real illustration slots: spread a few generated stickers across the field.
 const realIdList = realIllustrationIds.filter((id) => existingRealIds.has(id));
-const realImageSlotIndex = 4;
+const realImageSlotIndexes =
+  variant === 'minimal' ? [1, 3] : variant === 'dense' ? [2, 4, 7, 10, 12] : [2, 4, 7, 9];
 const selectedIllustrations = positions.map((pos, i) => {
   const placeholder = placeholderIllustrations[i % placeholderIllustrations.length];
-  const realId = i === realImageSlotIndex && realIdList[0] ? realIdList[0] : null;
+  const realIndex = realImageSlotIndexes.indexOf(i);
+  const realId = realIndex >= 0 && realIdList[realIndex] ? realIdList[realIndex] : null;
   return {
     ...placeholder,
     position: pos,
@@ -110,8 +112,8 @@ const selectedIllustrations = positions.map((pos, i) => {
 });
 ---
 
-<!-- Bear (or other real illustration) appears at slot index 4: ~55% from left, ~10% from top of hero. On viewports ≤480px only the real illustration is shown. -->
-<div class:list={["illustration-field", `illustration-field--${variant}`, className]} aria-hidden="true" data-real-illustration-slot="4">
+<!-- Real illustrations appear across the field. On viewports ≤480px only the real illustrations are shown. -->
+<div class:list={["illustration-field", `illustration-field--${variant}`, className]} aria-hidden="true">
   {selectedIllustrations.map(({ id, color, shape, position, realId }) => {
     const [x, y, rotation, scale, animClass] = position;
     const size = shape === 'circle' ? 40 + (realId ? 20 : Math.random() * 30) : 30 + (realId ? 15 : Math.random() * 25);
@@ -131,7 +133,7 @@ const selectedIllustrations = positions.map((pos, i) => {
           <img
             src={`/illustrations/${realId}.${getIllustrationExt(realId)}`}
             alt="Decorative illustration"
-            title={realId === 'bear' ? 'Bear (fallback illustration)' : undefined}
+            title={realId ? `${realId} illustration` : undefined}
             width={displaySize}
             height={displaySize}
             loading="lazy"

@@ -24,6 +24,9 @@ No strokes or outlines around shapes.
 Minimal shading - flat colors preferred, subtle gradients allowed sparingly.
 Rounded corners on all applicable shapes.
 Single isolated object centered on a pure white or transparent background.
+Pure white background only when transparency is not available.
+No glow, bloom, aura, vignette, spotlight, gradient background, or atmospheric lighting.
+No soft edge fade around the object; keep clean crisp edges.
 Style similar to modern educational apps for young children.
 `.trim();
 
@@ -69,6 +72,33 @@ export const OBJECTS = [
   { id: 'tree', prompt: 'A simple tree with brown trunk and round green leafy top, stylized', category: 'nature' },
   { id: 'cloud', prompt: 'A fluffy white cloud, simple rounded cumulus shape', category: 'nature' },
   { id: 'rainbow', prompt: 'A simple rainbow arc with traditional ROYGBIV colors, semicircle', category: 'nature' },
+
+  // Numbers
+  { id: 'one', prompt: 'A single counting block, bright blue, centered', category: 'numbers' },
+  { id: 'two', prompt: 'Two matching counting blocks, blue and green, side by side', category: 'numbers' },
+  { id: 'three', prompt: 'Three small counting blocks in a neat row, red yellow and blue', category: 'numbers' },
+  { id: 'four', prompt: 'Four rounded pebbles arranged in a square, soft pastel colors', category: 'numbers' },
+  { id: 'five', prompt: 'Five colorful counting beads arranged in a shallow arc', category: 'numbers' },
+  { id: 'six', prompt: 'Six soft round dots arranged in two rows of three, rainbow colors', category: 'numbers' },
+  { id: 'seven', prompt: 'Seven counting beads arranged on a gentle curved line', category: 'numbers' },
+  { id: 'eight', prompt: 'Eight small stars arranged in a neat circular ring', category: 'numbers' },
+
+  // Feelings
+  { id: 'happy', prompt: 'A friendly smiling face icon, round yellow face with bright eyes', category: 'feelings' },
+  { id: 'sad', prompt: 'A gentle sad face icon, round blue face with a downturned mouth', category: 'feelings' },
+  { id: 'excited', prompt: 'A joyful excited face icon with wide smile and tiny sparkle accents', category: 'feelings' },
+  { id: 'calm', prompt: 'A peaceful calm face icon with closed eyes and a soft smile, pastel teal', category: 'feelings' },
+
+  // Concepts
+  { id: 'love', prompt: 'Two overlapping heart shapes, pink and red, simple and soft', category: 'concepts' },
+  { id: 'friendship', prompt: 'Two friendly child-like figures standing side by side with arms around each other', category: 'concepts' },
+  { id: 'kindness', prompt: 'Two open hands gently holding a small heart', category: 'concepts' },
+  { id: 'sharing', prompt: 'Two hands passing a toy block to each other', category: 'concepts' },
+
+  // Objects
+  { id: 'clock', prompt: 'A simple round wall clock with short and long hands, pastel frame', category: 'objects' },
+  { id: 'key', prompt: 'A classic simple key, golden color with a rounded head', category: 'objects' },
+  { id: 'gift', prompt: 'A wrapped gift box with a ribbon bow, red and cream colors', category: 'objects' },
   
   // Clothing & Body
   { id: 'shoe', prompt: 'A single child sneaker shoe, red with white sole, side view', category: 'clothing' },
