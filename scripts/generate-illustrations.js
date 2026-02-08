@@ -2,13 +2,15 @@
 /**
  * First 100 Illustration Generator
  * 
- * Generates consistent, child-friendly illustrations using OpenAI's gpt-image-1.5 model.
+ * Generates consistent, child-friendly illustrations using OpenAI image models.
  * 
  * Usage:
  *   node scripts/generate-illustrations.js              # Generate all
  *   node scripts/generate-illustrations.js --dry-run    # Estimate cost only
  *   node scripts/generate-illustrations.js --only=cat,dog,apple  # Generate specific
  *   node scripts/generate-illustrations.js --category=animals    # Generate by category
+ *   node scripts/generate-illustrations.js --model=gpt-image-1.5-2025-12-16 # Override model
+ *   node scripts/generate-illustrations.js --auto-model # Pick a valid image model from API
  */
 
 import fs from 'fs';
@@ -29,15 +31,23 @@ const MANIFEST_FILE = path.join(ROOT_DIR, 'src', 'data', 'illustrations.json');
 // Configuration — OpenAI GPT Image 1.5 (Image API: /v1/images/generations)
 // GPT Image models always return base64; do not send response_format for them (API rejects it).
 const CONFIG = {
-  model: 'gpt-image-1.5',
   size: '1024x1024',
   quality: 'medium',
   responseFormat: 'b64_json', // only used for dall-e-2 / dall-e-3
   batchDelay: 1000,
 };
 
+const DEFAULT_MODEL = 'gpt-image-1.5';
 const GPT_IMAGE_MODELS = new Set(['gpt-image-1.5', 'gpt-image-1', 'gpt-image-1-mini']);
 const FALLBACK_MODEL = 'gpt-image-1'; // try this if gpt-image-1.5 returns 404 (e.g. org has access to 1 but not 1.5)
+
+function isGptImageModel(model) {
+  return model.startsWith('gpt-image-') || GPT_IMAGE_MODELS.has(model);
+}
+
+function isGptImage15(model) {
+  return model === 'gpt-image-1.5' || model.startsWith('gpt-image-1.5-');
+}
 
 /**
  * Parse command line arguments
@@ -49,6 +59,8 @@ function parseArgs() {
     only: null,
     category: null,
     verbose: false,
+    model: null,
+    autoModel: false,
   };
 
   for (const arg of args) {
@@ -60,6 +72,10 @@ function parseArgs() {
       options.only = arg.replace('--only=', '').split(',').map(s => s.trim());
     } else if (arg.startsWith('--category=')) {
       options.category = arg.replace('--category=', '').trim();
+    } else if (arg.startsWith('--model=')) {
+      options.model = arg.replace('--model=', '').trim();
+    } else if (arg === '--auto-model') {
+      options.autoModel = true;
     }
   }
 
@@ -120,16 +136,105 @@ function buildGenerateOptions(model) {
     size: CONFIG.size,
     quality: CONFIG.quality,
   };
-  if (!GPT_IMAGE_MODELS.has(model)) {
+  if (!isGptImageModel(model)) {
     base.response_format = CONFIG.responseFormat;
   }
   return base;
 }
 
+function logErrorDetails(error, label) {
+  if (!error) {
+    return;
+  }
+  const status = error?.status ?? error?.response?.status ?? null;
+  const data = error?.error ?? error?.response?.data ?? null;
+  const requestId =
+    error?.response?.headers?.['x-request-id'] ??
+    error?.response?.headers?.['x-request-id'.toLowerCase()] ??
+    null;
+  const details = {
+    label,
+    status,
+    message: error?.message ?? null,
+    type: error?.type ?? error?.error?.type ?? null,
+    code: error?.code ?? error?.error?.code ?? null,
+    param: error?.param ?? error?.error?.param ?? null,
+    requestId,
+    data,
+  };
+  console.log('\n  Error details:', JSON.stringify(details, null, 2));
+}
+
+async function listModelIds(openai, options) {
+  try {
+    const models = await openai.models.list();
+    return models.data.map((model) => model.id);
+  } catch (error) {
+    if (options.verbose) {
+      logErrorDetails(error, 'models:list');
+    }
+    return null;
+  }
+}
+
+function pickLatest(ids) {
+  return ids.slice().sort().pop() || null;
+}
+
+function pickPreferredImageModel(modelIds, preferredModel) {
+  if (!modelIds || modelIds.length === 0) {
+    return preferredModel;
+  }
+
+  const available = new Set(modelIds);
+  if (preferredModel && available.has(preferredModel)) {
+    return preferredModel;
+  }
+
+  const byPrefix = (prefix) => modelIds.filter((id) => id.startsWith(prefix));
+
+  const priority = [
+    { prefix: 'gpt-image-1.5-', pick: pickLatest },
+    { prefix: 'gpt-image-1.5', pick: (ids) => ids[0] || null },
+    { prefix: 'gpt-image-1-', pick: pickLatest },
+    { prefix: 'gpt-image-1', pick: (ids) => ids[0] || null },
+    { prefix: 'gpt-image-1-mini', pick: (ids) => ids[0] || null },
+    { prefix: 'dall-e-3', pick: (ids) => ids[0] || null },
+    { prefix: 'dall-e-2', pick: (ids) => ids[0] || null },
+  ];
+
+  for (const { prefix, pick } of priority) {
+    const matches = byPrefix(prefix);
+    const selected = pick(matches);
+    if (selected) {
+      return selected;
+    }
+  }
+
+  return preferredModel || modelIds[0];
+}
+
+async function resolveImageModel(openai, options, requestedModel) {
+  const modelIds = await listModelIds(openai, options);
+  const resolved = pickPreferredImageModel(modelIds, requestedModel || DEFAULT_MODEL);
+
+  if (options.verbose) {
+    const count = modelIds ? modelIds.length : 0;
+    console.log(`  Model list retrieved: ${count} models`);
+  }
+  if (requestedModel && resolved !== requestedModel) {
+    console.log(`  Requested model not found. Using: ${resolved}`);
+  } else if (options.autoModel) {
+    console.log(`  Auto-selected model: ${resolved}`);
+  }
+
+  return resolved;
+}
+
 /**
  * Generate a single illustration using OpenAI API. On 404 with gpt-image-1.5, retries once with gpt-image-1.
  */
-async function generateIllustration(openai, object, options) {
+async function generateIllustration(openai, object, options, model) {
   const prompt = buildPrompt(object);
   if (options.verbose) {
     console.log(`\n  Prompt: ${prompt.substring(0, 100)}...`);
@@ -157,16 +262,22 @@ async function generateIllustration(openai, object, options) {
   }
 
   try {
-    return await tryGenerate(CONFIG.model);
+    return await tryGenerate(model);
   } catch (error) {
+    if (options.verbose) {
+      logErrorDetails(error, `generate:${object.id}:${model}`);
+    }
     const is404 = String(error?.status ?? error?.response?.status ?? '').includes('404');
-    if (is404 && CONFIG.model === 'gpt-image-1.5') {
+    if (is404 && isGptImage15(model)) {
       if (options.verbose) {
         console.log(`\n  Retrying with ${FALLBACK_MODEL} after 404...`);
       }
       try {
         return await tryGenerate(FALLBACK_MODEL);
       } catch (fallbackError) {
+        if (options.verbose) {
+          logErrorDetails(fallbackError, `fallback:${object.id}:${FALLBACK_MODEL}`);
+        }
         return {
           success: false,
           error: formatError(fallbackError),
@@ -199,10 +310,11 @@ function saveImage(buffer, id) {
  */
 async function main() {
   const options = parseArgs();
+  const requestedModel = options.model || process.env.OPENAI_IMAGE_MODEL || DEFAULT_MODEL;
   
   console.log('\n🎨 First 100 Illustration Generator\n');
   console.log('━'.repeat(50));
-  console.log(`  Model: ${CONFIG.model}`);
+  console.log(`  Requested model: ${requestedModel}`);
 
   // Report existing generated images (PNG = from API; SVG = fallback)
   const existingPngs = OBJECTS.filter((o) => fs.existsSync(path.join(OUTPUT_DIR, `${o.id}.png`)));
@@ -258,8 +370,23 @@ async function main() {
   
   // Initialize OpenAI client
   const OpenAI = (await import('openai')).default;
-  const openai = new OpenAI({ apiKey });
-  
+  const orgId = process.env.OPENAI_ORG_ID;
+  const projectId = process.env.OPENAI_PROJECT_ID;
+  const clientOptions = { apiKey };
+  if (orgId) {
+    clientOptions.organization = orgId;
+  }
+  if (projectId) {
+    clientOptions.project = projectId;
+  }
+  const openai = new OpenAI(clientOptions);
+  if (options.verbose && (orgId || projectId)) {
+    console.log(`  Using org/project override: ${orgId ?? 'none'} / ${projectId ?? 'none'}`);
+  }
+
+  const model = await resolveImageModel(openai, options, requestedModel);
+  console.log(`  Selected model: ${model}`);
+
   // Load existing data
   const log = loadLog();
   const manifest = loadManifest();
@@ -281,7 +408,7 @@ async function main() {
     
     process.stdout.write(`${progress} Generating ${obj.id}... `);
     
-    const result = await generateIllustration(openai, obj, options);
+    const result = await generateIllustration(openai, obj, options, model);
     
     if (result.success) {
       const filePath = saveImage(result.buffer, obj.id);

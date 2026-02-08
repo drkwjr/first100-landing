@@ -5,11 +5,11 @@ model_reasoning_effort = "medium"
 
 approval_policy = "on-request"
 sandbox_mode = "workspace-write"
+web_search = "disabled"
 
 [features]
 unified_exec = true
 shell_snapshot = true
-web_search_request = false
 apply_patch_freeform = true
 
 [shell_environment_policy]
@@ -41,10 +41,9 @@ network_access = true
 [profiles.research]
 approval_policy = "on-request"
 sandbox_mode = "workspace-write"
+web_search = "live"
 [profiles.research.sandbox_workspace_write]
 network_access = true
-[profiles.research.features]
-web_search_request = true
 
 [profiles.readonly]
 approval_policy = "never"

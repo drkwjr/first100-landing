@@ -1,3 +1,10 @@
 {
-  "illustrations": []
+  "illustrations": [
+    {
+      "id": "bear",
+      "category": "animals",
+      "file": "/illustrations/bear.png",
+      "generatedAt": "2026-02-07T22:49:28.399Z"
+    }
+  ]
 }
