@@ -17,7 +17,7 @@ const totalLanguages = languageData.languages.length;
 const railStickers = stickerData.stickers;
 ---
 
-<BaseLayout title="First 100" description="First Words for Kids — in hundreds of languages. Tap a picture. Hear the word. No ads.">
+<BaseLayout title="First 100" description="First Words for Kids — in your home language. Tap a picture. Hear the word. No ads.">
   <Header slot="header" currentPath="/" />
   
   <!-- Hero Section -->
@@ -26,7 +26,7 @@ const railStickers = stickerData.stickers;
     <div class="hero__content container">
       <h1 class="hero__headline">
         First Words for Kids —<br />
-        <span class="hero__headline-accent">in hundreds of languages.</span>
+        <span class="hero__headline-accent">in your home language.</span>
       </h1>
       <p class="hero__subheadline">
         Tap a picture. Hear the word. No ads.
@@ -45,10 +45,10 @@ const railStickers = stickerData.stickers;
     <div class="container">
       <StickerSet variant="rail" stickers={railStickers} />
       <div class="sticker-rail__pitch" role="note" aria-label="Learning value">
-        <p class="sticker-rail__eyebrow">Built for real family language moments</p>
-        <p class="sticker-rail__title">Children learn faster when they hear first words in the language of home.</p>
-        <p class="sticker-rail__copy">From feelings and food to playtime and routines, each word is designed to feel familiar, clear, and joyful.</p>
-        <a href="/languages" class="sticker-rail__cta">Choose your language</a>
+        <p class="sticker-rail__eyebrow">Designed For Early Fluency</p>
+        <p class="sticker-rail__title">Give families a first-words experience that feels personal, trusted, and ready from day one.</p>
+        <p class="sticker-rail__copy">Clean visuals, native-word audio, and culturally familiar vocabulary help children connect faster and keep practicing.</p>
+        <a href="/languages" class="sticker-rail__cta">See Available Languages</a>
       </div>
     </div>
   </section>
@@ -155,56 +155,58 @@ const railStickers = stickerData.stickers;
   }
 
   .sticker-rail {
-    padding: var(--space-4) 0 var(--space-10);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), var(--color-surface));
+    padding: var(--space-4) 0 var(--space-12);
+    background:
+      radial-gradient(circle at 12% 16%, rgba(168, 213, 186, 0.24), transparent 44%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.66), var(--color-surface));
   }
 
   .sticker-rail__pitch {
-    margin: var(--space-6) auto 0;
-    max-width: 760px;
-    padding: var(--space-6) var(--space-7);
-    border: 1px solid rgba(48, 92, 67, 0.18);
-    border-radius: var(--radius-2xl);
-    background: linear-gradient(135deg, rgba(241, 250, 244, 0.95), rgba(252, 255, 250, 0.98));
-    box-shadow: 0 12px 32px rgba(48, 92, 67, 0.08);
-    text-align: center;
+    margin: var(--space-8) auto 0;
+    max-width: 880px;
+    padding: var(--space-8) var(--space-8);
+    border-top: 3px solid rgba(48, 92, 67, 0.4);
+    border-radius: var(--radius-xl);
+    background: #ffffff;
+    box-shadow: 0 14px 30px rgba(28, 40, 34, 0.08);
+    text-align: left;
   }
 
   .sticker-rail__eyebrow {
-    margin: 0 0 var(--space-2);
-    color: rgba(48, 92, 67, 0.86);
+    margin: 0 0 var(--space-3);
+    color: rgba(38, 80, 58, 0.9);
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    font-size: 0.7rem;
     font-weight: var(--font-weight-semibold);
   }
 
   .sticker-rail__title {
     margin: 0;
-    font-size: clamp(1rem, 2vw, 1.35rem);
-    line-height: 1.35;
-    color: rgba(24, 41, 33, 0.95);
+    font-size: clamp(1.05rem, 2.2vw, 1.5rem);
+    line-height: 1.4;
+    color: rgba(18, 34, 28, 0.96);
     font-weight: var(--font-weight-semibold);
   }
 
   .sticker-rail__copy {
-    margin: var(--space-3) auto 0;
-    max-width: 620px;
+    margin: var(--space-4) 0 0;
+    max-width: 700px;
     color: var(--color-text-muted);
-    font-size: var(--font-size-sm);
-    line-height: 1.55;
+    font-size: 0.98rem;
+    line-height: 1.65;
   }
 
   .sticker-rail__cta {
-    margin-top: var(--space-4);
+    margin-top: var(--space-5);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 18px;
+    padding: 12px 20px;
     border-radius: var(--radius-full);
     text-decoration: none;
     font-weight: var(--font-weight-semibold);
-    font-size: var(--font-size-sm);
+    font-size: 0.92rem;
     color: var(--color-surface);
     background: linear-gradient(180deg, var(--color-accent), #2f6f4f);
     box-shadow: 0 8px 20px rgba(47, 111, 79, 0.3);
@@ -259,12 +261,12 @@ const railStickers = stickerData.stickers;
     }
 
     .sticker-rail {
-      padding-bottom: var(--space-8);
+      padding-bottom: var(--space-9);
     }
 
     .sticker-rail__pitch {
-      margin-top: var(--space-5);
-      padding: var(--space-5);
+      margin-top: var(--space-6);
+      padding: var(--space-6) var(--space-5);
       border-radius: var(--radius-xl);
     }
     
