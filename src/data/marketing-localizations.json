@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-02-11T02:40:15.779Z",
+  "generatedAt": "2026-02-11T03:25:51.023Z",
   "options": {
     "model": "gpt-image-1",
     "quality": "high",
@@ -13,6 +13,24 @@
       "language": "Spanish",
       "languageSlug": "spanish",
       "imagePath": "/marketing/localized/spanish/appmarketing01.png",
+      "method": "existing"
+    },
+    {
+      "id": "appmarketing01-arabic",
+      "templateId": "appmarketing01",
+      "category": "Actions",
+      "language": "Arabic",
+      "languageSlug": "arabic",
+      "imagePath": "/marketing/localized/arabic/appmarketing01.png",
+      "method": "edit"
+    },
+    {
+      "id": "appmarketing01-french",
+      "templateId": "appmarketing01",
+      "category": "Actions",
+      "language": "French",
+      "languageSlug": "french",
+      "imagePath": "/marketing/localized/french/appmarketing01.png",
       "method": "edit"
     },
     {
@@ -22,6 +40,24 @@
       "language": "Spanish",
       "languageSlug": "spanish",
       "imagePath": "/marketing/localized/spanish/appmarketing02.png",
+      "method": "existing"
+    },
+    {
+      "id": "appmarketing02-arabic",
+      "templateId": "appmarketing02",
+      "category": "Animals",
+      "language": "Arabic",
+      "languageSlug": "arabic",
+      "imagePath": "/marketing/localized/arabic/appmarketing02.png",
+      "method": "edit"
+    },
+    {
+      "id": "appmarketing02-french",
+      "templateId": "appmarketing02",
+      "category": "Animals",
+      "language": "French",
+      "languageSlug": "french",
+      "imagePath": "/marketing/localized/french/appmarketing02.png",
       "method": "edit"
     },
     {
@@ -31,6 +67,24 @@
       "language": "Spanish",
       "languageSlug": "spanish",
       "imagePath": "/marketing/localized/spanish/appmarketing03.png",
+      "method": "existing"
+    },
+    {
+      "id": "appmarketing03-arabic",
+      "templateId": "appmarketing03",
+      "category": "Home Objects",
+      "language": "Arabic",
+      "languageSlug": "arabic",
+      "imagePath": "/marketing/localized/arabic/appmarketing03.png",
+      "method": "edit"
+    },
+    {
+      "id": "appmarketing03-french",
+      "templateId": "appmarketing03",
+      "category": "Home Objects",
+      "language": "French",
+      "languageSlug": "french",
+      "imagePath": "/marketing/localized/french/appmarketing03.png",
       "method": "edit"
     },
     {
@@ -40,6 +94,24 @@
       "language": "Spanish",
       "languageSlug": "spanish",
       "imagePath": "/marketing/localized/spanish/appmarketing04.png",
+      "method": "existing"
+    },
+    {
+      "id": "appmarketing04-arabic",
+      "templateId": "appmarketing04",
+      "category": "Colors",
+      "language": "Arabic",
+      "languageSlug": "arabic",
+      "imagePath": "/marketing/localized/arabic/appmarketing04.png",
+      "method": "edit"
+    },
+    {
+      "id": "appmarketing04-french",
+      "templateId": "appmarketing04",
+      "category": "Colors",
+      "language": "French",
+      "languageSlug": "french",
+      "imagePath": "/marketing/localized/french/appmarketing04.png",
       "method": "edit"
     },
     {
@@ -49,6 +121,24 @@
       "language": "Spanish",
       "languageSlug": "spanish",
       "imagePath": "/marketing/localized/spanish/appmarketing05.png",
+      "method": "existing"
+    },
+    {
+      "id": "appmarketing05-arabic",
+      "templateId": "appmarketing05",
+      "category": "Family",
+      "language": "Arabic",
+      "languageSlug": "arabic",
+      "imagePath": "/marketing/localized/arabic/appmarketing05.png",
+      "method": "edit"
+    },
+    {
+      "id": "appmarketing05-french",
+      "templateId": "appmarketing05",
+      "category": "Family",
+      "language": "French",
+      "languageSlug": "french",
+      "imagePath": "/marketing/localized/french/appmarketing05.png",
       "method": "edit"
     },
     {
@@ -58,6 +148,24 @@
       "language": "Spanish",
       "languageSlug": "spanish",
       "imagePath": "/marketing/localized/spanish/appmarketing06.png",
+      "method": "existing"
+    },
+    {
+      "id": "appmarketing06-arabic",
+      "templateId": "appmarketing06",
+      "category": "Nature",
+      "language": "Arabic",
+      "languageSlug": "arabic",
+      "imagePath": "/marketing/localized/arabic/appmarketing06.png",
+      "method": "edit"
+    },
+    {
+      "id": "appmarketing06-french",
+      "templateId": "appmarketing06",
+      "category": "Nature",
+      "language": "French",
+      "languageSlug": "french",
+      "imagePath": "/marketing/localized/french/appmarketing06.png",
       "method": "edit"
     }
   ]

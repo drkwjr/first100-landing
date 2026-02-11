@@ -2,137 +2,33 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import showcaseData from '../data/showcase-variants.json';
-import marketingData from '../data/marketing-localizations.json';
 import { withBase } from '../utils/withBase';
 
-const categoryItems = showcaseData.items || [];
-const localizedItems = marketingData.items || [];
-
-const baseMarketingTemplates = [
-  { id: 'appmarketing01', category: 'Actions', imagePath: withBase('/marketing/base/appmarketing01.png') },
-  { id: 'appmarketing02', category: 'Animals', imagePath: withBase('/marketing/base/appmarketing02.png') },
-  { id: 'appmarketing03', category: 'Home Objects', imagePath: withBase('/marketing/base/appmarketing03.png') },
-  { id: 'appmarketing04', category: 'Colors', imagePath: withBase('/marketing/base/appmarketing04.png') },
-  { id: 'appmarketing05', category: 'Family', imagePath: withBase('/marketing/base/appmarketing05.png') },
-  { id: 'appmarketing06', category: 'Nature', imagePath: withBase('/marketing/base/appmarketing06.png') },
-];
-
-const previewCategoryItems = categoryItems.slice(0, 12);
-const previewLocalizedItems = localizedItems.slice(0, 12);
-
-const languagesPath = withBase('/languages');
-const requestPath = withBase('/request-language');
+const howPath = withBase('/how-it-works');
 ---
 
-<BaseLayout
-  title="Showcase"
-  description="Explore First 100 app previews across languages, categories, and learning themes."
->
+<BaseLayout title="Showcase" description="Showcase has moved into the How It Works page.">
   <Header slot="header" currentPath="/showcase" />
 
-  <article class="showcase-page">
-    <div class="container">
-      <header class="showcase-page__hero">
-        <p class="showcase-page__eyebrow">Showcase</p>
-        <h1>See First 100 across languages and learning themes</h1>
-        <p>
-          The same calm, toddler-friendly design appears across every language app, with localized vocabulary and familiar visuals.
-        </p>
-      </header>
-
-      <section class="showcase-section" aria-label="App previews">
-        <div class="showcase-section__header">
-          <h2>App Preview Screens</h2>
-          <p>Examples from the core experience families see in each language app.</p>
-        </div>
-        <div class="showcase-grid showcase-grid--poster">
-          {baseMarketingTemplates.map((template) => (
-            <article class="showcase-card showcase-card--poster">
-              <img src={template.imagePath} alt={`${template.category} preview screen`} loading="lazy" decoding="async" width="248" height="536" />
-              <div class="showcase-card__content">
-                <p class="showcase-card__category">{template.category}</p>
-                <p class="showcase-card__pair">Core learning set</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section class="showcase-section" aria-label="Localized previews">
-        <div class="showcase-section__header">
-          <h2>Language Highlights</h2>
-          <p>Localized poster examples for different family language needs.</p>
-        </div>
-
-        {previewLocalizedItems.length > 0 ? (
-          <div class="showcase-grid showcase-grid--poster">
-            {previewLocalizedItems.map((item) => (
-              <article class="showcase-card showcase-card--poster">
-                <img src={withBase(item.imagePath)} alt={`${item.category} learning screen in ${item.language}`} loading="lazy" decoding="async" width="248" height="536" />
-                <div class="showcase-card__content">
-                  <p class="showcase-card__category">{item.language}</p>
-                  <p class="showcase-card__pair">{item.category}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        ) : (
-          <section class="showcase-empty">
-            <h3>More language previews coming soon</h3>
-            <p>We are continuously adding localized examples as new languages launch.</p>
-          </section>
-        )}
-      </section>
-
-      <section class="showcase-section" aria-label="Category examples">
-        <div class="showcase-section__header">
-          <h2>Vocabulary Category Examples</h2>
-          <p>A sample of categories children practice as they build first words.</p>
-        </div>
-
-        {previewCategoryItems.length > 0 ? (
-          <div class="showcase-grid">
-            {previewCategoryItems.map((item) => (
-              <article class="showcase-card">
-                <img src={withBase(item.imagePath)} alt={`${item.category} vocabulary example`} loading="lazy" decoding="async" width="320" height="320" />
-                <div class="showcase-card__content">
-                  <p class="showcase-card__category">{item.category}</p>
-                  <p class="showcase-card__pair">{item.sourceLanguage} + {item.targetLanguage}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        ) : (
-          <section class="showcase-empty">
-            <h3>Category previews coming soon</h3>
-            <p>As languages roll out, we keep expanding this gallery with category examples.</p>
-          </section>
-        )}
-      </section>
-
-      <section class="showcase-page__actions">
-        <a href={languagesPath} class="showcase-page__cta-primary">Browse available languages</a>
-        <a href={requestPath} class="showcase-page__cta-secondary">Request your language</a>
-      </section>
-    </div>
-  </article>
+  <main class="showcase-redirect container">
+    <p class="showcase-redirect__eyebrow">Page Update</p>
+    <h1>Showcase has moved</h1>
+    <p>
+      All product previews and language examples now live in <a href={howPath}>How It Works</a>.
+    </p>
+    <a href={howPath} class="showcase-redirect__cta">Go to How It Works</a>
+  </main>
 
   <Footer slot="footer" />
 </BaseLayout>
 
 <style>
-  .showcase-page {
-    padding: var(--space-12) 0 var(--space-20);
-  }
-
-  .showcase-page__hero {
+  .showcase-redirect {
+    padding: var(--space-16) var(--space-6) var(--space-20);
     text-align: center;
-    max-width: 860px;
-    margin: 0 auto var(--space-10);
   }
 
-  .showcase-page__eyebrow {
+  .showcase-redirect__eyebrow {
     margin: 0;
     text-transform: uppercase;
     letter-spacing: 0.09em;
@@ -141,125 +37,22 @@ const requestPath = withBase('/request-language');
     font-weight: var(--font-weight-semibold);
   }
 
-  .showcase-page h1 {
+  .showcase-redirect h1 {
     margin-top: var(--space-3);
-    font-size: clamp(1.9rem, 3vw, 2.8rem);
   }
 
-  .showcase-page__hero p {
+  .showcase-redirect p {
     margin-top: var(--space-4);
-    font-size: var(--font-size-md);
   }
 
-  .showcase-section {
-    margin-top: var(--space-12);
-  }
-
-  .showcase-section__header {
-    margin-bottom: var(--space-5);
-  }
-
-  .showcase-section__header h2 {
-    margin: 0;
-    font-size: var(--font-size-2xl);
-  }
-
-  .showcase-section__header p {
-    margin-top: var(--space-2);
-    color: var(--color-text-muted);
-  }
-
-  .showcase-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: var(--space-4);
-  }
-
-  .showcase-grid--poster {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  }
-
-  .showcase-card {
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    background: var(--color-surface);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .showcase-card img {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    background: #f6f6f6;
-  }
-
-  .showcase-card--poster img {
-    aspect-ratio: 1242 / 2688;
-    object-fit: cover;
-  }
-
-  .showcase-card__content {
-    padding: var(--space-4);
-  }
-
-  .showcase-card__category {
-    margin: 0;
-    color: var(--color-text);
-    font-size: var(--font-size-base);
-    font-weight: var(--font-weight-semibold);
-  }
-
-  .showcase-card__pair {
-    margin: var(--space-2) 0 0;
-    font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
-  }
-
-  .showcase-empty {
-    border: 1px dashed var(--color-border);
-    border-radius: var(--radius-lg);
-    background: #fff;
-    padding: var(--space-7);
-  }
-
-  .showcase-empty h3 {
-    margin: 0;
-    font-size: var(--font-size-lg);
-  }
-
-  .showcase-empty p {
-    margin-top: var(--space-3);
-  }
-
-  .showcase-page__actions {
-    margin-top: var(--space-12);
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: var(--space-3);
-  }
-
-  .showcase-page__cta-primary,
-  .showcase-page__cta-secondary {
+  .showcase-redirect__cta {
+    margin-top: var(--space-6);
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
     text-decoration: none;
     border-radius: var(--radius-full);
     padding: 10px 18px;
     font-weight: var(--font-weight-semibold);
-  }
-
-  .showcase-page__cta-primary {
     color: var(--color-surface);
     background: var(--color-accent);
-  }
-
-  .showcase-page__cta-secondary {
-    color: var(--color-text);
-    background: #fff;
-    border: 1px solid var(--color-border);
   }
 </style>

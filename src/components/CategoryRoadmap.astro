@@ -13,15 +13,6 @@ const categories = [
   'Home Objects',
   'Daily Words'
 ];
-
-const languagePairs = [
-  ['English', 'Somali'],
-  ['English', 'Spanish'],
-  ['English', 'Arabic'],
-  ['English', 'French'],
-  ['English', 'Swahili'],
-  ['English', 'Amharic']
-];
 ---
 
 <section class="category-roadmap" aria-label="Word pack roadmap">
@@ -40,14 +31,6 @@ const languagePairs = [
       ))}
     </div>
 
-    <div class="category-roadmap__pairs">
-      {languagePairs.map(([source, target]) => (
-        <article class="category-roadmap__pair">
-          <p class="category-roadmap__pair-title">{source} + {target}</p>
-          <p class="category-roadmap__pair-copy">Same trusted learning flow, localized for families who speak both languages.</p>
-        </article>
-      ))}
-    </div>
   </div>
 </section>
 
@@ -102,41 +85,4 @@ const languagePairs = [
     font-weight: var(--font-weight-medium);
   }
 
-  .category-roadmap__pairs {
-    margin-top: var(--space-10);
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-4);
-  }
-
-  .category-roadmap__pair {
-    padding: var(--space-5);
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-  }
-
-  .category-roadmap__pair-title {
-    margin: 0;
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-text);
-    font-size: var(--font-size-base);
-  }
-
-  .category-roadmap__pair-copy {
-    margin: var(--space-2) 0 0;
-    font-size: var(--font-size-sm);
-  }
-
-  @media (max-width: 900px) {
-    .category-roadmap__pairs {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (max-width: 640px) {
-    .category-roadmap__pairs {
-      grid-template-columns: 1fr;
-    }
-  }
 </style>

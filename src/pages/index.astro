@@ -19,10 +19,8 @@ const totalLanguages = languageData.languages.length;
 const railStickers = stickerData.stickers;
 const languagesPath = withBase('/languages');
 const howItWorksPath = withBase('/how-it-works');
-const showcasePath = withBase('/showcase');
 const parentsPath = withBase('/for-parents');
 const educatorsPath = withBase('/for-educators');
-const supportPath = withBase('/support');
 ---
 
 <BaseLayout title="First 100" description="First Words for Kids — in your home language. Tap a picture. Hear the word. No ads.">
@@ -67,10 +65,6 @@ const supportPath = withBase('/support');
           <h2 class="pathways__title">Educator Plans</h2>
           <p class="pathways__copy">Classroom rollout, multi-device support, and enterprise-style purchasing via direct contact.</p>
         </a>
-      </div>
-      <div class="pathways__links">
-        <a href={showcasePath} class="pathways__support-link">See multilingual showcase →</a>
-        <a href={supportPath} class="pathways__support-link">Need details first? Visit Support →</a>
       </div>
     </div>
   </section>
@@ -232,21 +226,6 @@ const supportPath = withBase('/support');
     line-height: 1.65;
   }
 
-  .pathways__support-link {
-    display: inline-flex;
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-accent);
-    text-decoration: none;
-  }
-
-  .pathways__links {
-    margin-top: var(--space-6);
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-5);
-    align-items: center;
-  }
-  
   /* Languages Preview Section */
   .languages-preview {
     padding: var(--space-20) 0;
