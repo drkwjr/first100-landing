@@ -2,26 +2,40 @@
 import { withBase } from '../utils/withBase';
 
 const currentYear = new Date().getFullYear();
-const languagesPath = withBase('/languages');
-const privacyPath = withBase('/privacy');
+const logoPath = withBase('/brand/logo-mark.png');
+
+const links = [
+  { href: withBase('/languages'), label: 'Languages' },
+  { href: withBase('/how-it-works'), label: 'How It Works' },
+  { href: withBase('/showcase'), label: 'Showcase' },
+  { href: withBase('/for-parents'), label: 'For Parents' },
+  { href: withBase('/for-educators'), label: 'For Educators' },
+  { href: withBase('/support'), label: 'Support' },
+  { href: withBase('/brand'), label: 'Brand' },
+  { href: withBase('/request-language'), label: 'Request a Language' },
+  { href: withBase('/privacy'), label: 'Privacy' },
+  { href: withBase('/terms'), label: 'Terms' }
+];
 ---
 
 <footer class="footer">
   <div class="footer__container container">
     <div class="footer__brand">
-      <span class="footer__logo">First 100</span>
-      <p class="footer__tagline">First words for kids — in hundreds of languages.</p>
+      <img src={logoPath} alt="First 100 logo" width="36" height="36" class="footer__logo-mark" loading="lazy" decoding="async" />
+      <div>
+        <p class="footer__logo">First 100</p>
+        <p class="footer__tagline">First words for kids in home languages.</p>
+      </div>
     </div>
-    
+
     <nav class="footer__links" aria-label="Footer navigation">
-      <a href={languagesPath} class="footer__link">Languages</a>
-      <a href={privacyPath} class="footer__link">Privacy</a>
+      {links.map((link) => (
+        <a href={link.href} class="footer__link">{link.label}</a>
+      ))}
       <a href="mailto:hello@first100.app" class="footer__link">Contact</a>
     </nav>
-    
-    <p class="footer__copyright">
-      © {currentYear} First 100. All rights reserved.
-    </p>
+
+    <p class="footer__copyright">© {currentYear} First 100. All rights reserved.</p>
   </div>
 </footer>
 
@@ -32,7 +46,7 @@ const privacyPath = withBase('/privacy');
     padding: var(--space-12) 0 var(--space-8);
     margin-top: auto;
   }
-  
+
   .footer__container {
     display: flex;
     flex-direction: column;
@@ -40,44 +54,57 @@ const privacyPath = withBase('/privacy');
     gap: var(--space-6);
     text-align: center;
   }
-  
+
   .footer__brand {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: var(--space-2);
+    gap: var(--space-3);
   }
-  
+
+  .footer__logo-mark {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: 1px solid rgba(74, 124, 89, 0.22);
+    background: #ffffff;
+    box-shadow: var(--shadow-sm);
+  }
+
   .footer__logo {
+    margin: 0;
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-semibold);
     color: var(--color-text);
     letter-spacing: var(--letter-spacing-tight);
+    text-align: left;
   }
-  
+
   .footer__tagline {
+    margin: 2px 0 0;
     font-size: var(--font-size-sm);
     color: var(--color-text-muted);
+    text-align: left;
   }
-  
+
   .footer__links {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: var(--space-4) var(--space-6);
+    gap: var(--space-3) var(--space-5);
+    max-width: 800px;
   }
-  
+
   .footer__link {
     font-size: var(--font-size-sm);
     color: var(--color-text-muted);
     text-decoration: none;
     transition: color var(--transition-fast);
   }
-  
+
   .footer__link:hover {
     color: var(--color-accent);
   }
-  
+
   .footer__copyright {
     font-size: var(--font-size-xs);
     color: var(--color-text-soft);

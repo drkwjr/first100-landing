@@ -1,0 +1,224 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SocialProof from '../components/SocialProof.astro';
+import { withBase } from '../utils/withBase';
+
+const languagesPath = withBase('/languages');
+const supportPath = withBase('/support');
+---
+
+<BaseLayout
+  title="For Parents"
+  description="Parent-friendly pricing and learning features for First 100 language apps."
+>
+  <Header slot="header" currentPath="/for-parents" />
+
+  <article class="parents-page">
+    <div class="container">
+      <header class="parents-page__hero">
+        <p class="parents-page__eyebrow">For Parents</p>
+        <h1 class="parents-page__title">Clear pricing. Calm learning. No surprises.</h1>
+        <p class="parents-page__subtitle">
+          Start with one language app for $2.99, then add optional packs only when your child is ready for more words.
+        </p>
+      </header>
+
+      <section class="parents-pricing" aria-label="Parent pricing options">
+        <article class="parents-pricing__card parents-pricing__card--primary">
+          <p class="parents-pricing__label">Core App</p>
+          <h2 class="parents-pricing__price">$2.99</h2>
+          <p class="parents-pricing__description">One-time purchase for a single language app.</p>
+          <ul class="parents-pricing__list">
+            <li>100+ first words grouped by real-life categories</li>
+            <li>Native-speaker audio on every vocabulary card</li>
+            <li>No ads, no subscriptions, no popups</li>
+            <li>Offline-friendly for travel and low-connectivity use</li>
+          </ul>
+        </article>
+
+        <article class="parents-pricing__card">
+          <p class="parents-pricing__label">Optional Add-ons</p>
+          <h2 class="parents-pricing__price">Word Packs</h2>
+          <p class="parents-pricing__description">Expand vocabulary gradually with themed add-ons.</p>
+          <ul class="parents-pricing__list">
+            <li>Seasonal and topic-specific vocabulary sets</li>
+            <li>Category extensions like feelings, actions, and routines</li>
+            <li>New content you can add only when needed</li>
+            <li>Supports households teaching multiple languages over time</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="parents-benefits" aria-label="Parent benefits">
+        <article class="parents-benefits__item">
+          <h3>Designed for ages 1-4</h3>
+          <p>Big visuals, simple taps, and predictable interaction make it easy for toddlers to stay focused.</p>
+        </article>
+        <article class="parents-benefits__item">
+          <h3>Supports bilingual routines</h3>
+          <p>Home-language words and familiar pronunciation help children connect app learning to everyday life.</p>
+        </article>
+        <article class="parents-benefits__item">
+          <h3>Simple parent decisions</h3>
+          <p>You can start small, avoid recurring charges, and choose additional content only when it adds value.</p>
+        </article>
+      </section>
+
+      <section class="parents-page__actions">
+        <a href={languagesPath} class="parents-page__cta-primary">Browse language apps</a>
+        <a href={supportPath} class="parents-page__cta-secondary">Read support FAQ</a>
+      </section>
+    </div>
+  </article>
+
+  <SocialProof />
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .parents-page {
+    padding: var(--space-12) 0 var(--space-16);
+  }
+
+  .parents-page__hero {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto var(--space-10);
+  }
+
+  .parents-page__eyebrow {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    font-size: 0.72rem;
+    color: var(--color-accent);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .parents-page__title {
+    margin-top: var(--space-3);
+    font-size: clamp(2rem, 3vw, 2.9rem);
+  }
+
+  .parents-page__subtitle {
+    margin-top: var(--space-4);
+    font-size: var(--font-size-md);
+    line-height: 1.7;
+  }
+
+  .parents-pricing {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  .parents-pricing__card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-7);
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .parents-pricing__card--primary {
+    border-color: rgba(74, 124, 89, 0.45);
+    background: linear-gradient(180deg, rgba(232, 240, 234, 0.6), #ffffff);
+  }
+
+  .parents-pricing__label {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.72rem;
+    color: var(--color-accent);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .parents-pricing__price {
+    margin: var(--space-2) 0 0;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: var(--color-text);
+    line-height: 1.15;
+  }
+
+  .parents-pricing__description {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  .parents-pricing__list {
+    margin: var(--space-5) 0 0;
+    padding-left: var(--space-5);
+    display: grid;
+    gap: var(--space-3);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    font-size: var(--font-size-sm);
+  }
+
+  .parents-benefits {
+    margin-top: var(--space-9);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .parents-benefits__item {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    background: var(--color-surface);
+  }
+
+  .parents-benefits__item h3 {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    line-height: 1.35;
+  }
+
+  .parents-benefits__item p {
+    margin-top: var(--space-3);
+    line-height: 1.65;
+  }
+
+  .parents-page__actions {
+    margin-top: var(--space-10);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .parents-page__cta-primary,
+  .parents-page__cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: var(--radius-full);
+    padding: 10px 18px;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .parents-page__cta-primary {
+    color: var(--color-surface);
+    background: var(--color-accent);
+  }
+
+  .parents-page__cta-secondary {
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    background: #ffffff;
+  }
+
+  @media (max-width: 900px) {
+    .parents-pricing,
+    .parents-benefits {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

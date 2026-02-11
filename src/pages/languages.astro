@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import LanguageCard from '../components/LanguageCard.astro';
 import SearchInput from '../components/SearchInput.astro';
 import StickerSet from '../components/StickerSet.astro';
+import { withBase } from '../utils/withBase';
 import languageData from '../data/languages.json';
 import stickerData from '../data/stickers.json';
 
@@ -27,6 +28,7 @@ const letters = Object.keys(groupedLanguages).sort();
 const totalLanguages = languageData.languages.length;
 const availableCount = languageData.languages.filter(l => l.status === 'available').length;
 const headerStickers = stickerData.stickers.slice(8, 13);
+const requestPath = withBase('/request-language');
 ---
 
 <BaseLayout 
@@ -46,6 +48,7 @@ const headerStickers = stickerData.stickers.slice(8, 13);
         <div class="languages-page__stickers" aria-hidden="true">
           <StickerSet variant="cluster" stickers={headerStickers} />
         </div>
+        <a href={requestPath} class="languages-page__request">Need a different language? Request it.</a>
       </header>
       
       <!-- Search -->
@@ -109,6 +112,24 @@ const headerStickers = stickerData.stickers.slice(8, 13);
     font-size: var(--font-size-lg);
     color: var(--color-text-muted);
     margin: 0;
+  }
+
+  .languages-page__request {
+    margin-top: var(--space-5);
+    display: inline-flex;
+    text-decoration: none;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-border);
+    background: #ffffff;
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    padding: 9px 14px;
+  }
+
+  .languages-page__request:hover {
+    color: var(--color-accent);
+    border-color: rgba(74, 124, 89, 0.32);
   }
   
   .languages-page__search {

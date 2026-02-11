@@ -24,6 +24,30 @@ If deploying under a subpath (for example GitHub Pages project sites), set `ASTR
 ASTRO_BASE_PATH=/first100-landing npm run build
 ```
 
+## Dev Server Manager
+
+Use the server manager if you want the dev server to persist in the background and stop safely later.
+
+```bash
+# Start in background
+npm run dev:server
+
+# Check status
+npm run dev:status
+
+# View logs
+npm run dev:logs
+
+# Stop safely
+npm run dev:stop
+```
+
+Optional environment overrides:
+
+```bash
+HOST=0.0.0.0 PORT=4322 npm run dev:server
+```
+
 ## Testing and verification
 
 ### Run tests
@@ -129,6 +153,37 @@ node scripts/generate-illustrations.js --category=animals
 Requires `OPENAI_API_KEY` in your environment (e.g. in a `.env` file).
 
 **Cost estimate**: ~$1-2 for 30 illustrations at medium quality.
+
+## Generating Localized Marketing Assets
+
+The project includes two reference-driven image pipelines:
+
+1. **Category visuals from screenshots + marketing references**
+2. **Poster text localization from base marketing images**
+
+### Dry run (recommended first)
+
+```bash
+# Category showcase jobs (uses edit model + all references)
+npm run generate-showcase:dry-run
+
+# Marketing localization jobs (6 templates x selected languages)
+npm run generate-marketing-localizations:dry-run
+```
+
+### Generate assets
+
+```bash
+# Generate category showcase images (edit mode, no fallback)
+npm run generate-showcase -- --reference-set=screens+marketing --max-jobs=24
+
+# Generate localized marketing posters (example: Spanish + Arabic + French)
+npm run generate-marketing-localizations -- --languages=spanish,arabic,french
+```
+
+### Model compatibility note
+
+`images.edit` requires an edit-capable model. The scripts use `gpt-image-1` for edits by default because `gpt-image-1.5` may fail on the edits endpoint and force non-reference fallback generation.
 
 ### API Organization Verification
 

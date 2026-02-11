@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Terms of Service" description="Terms of service for First 100 apps and website.">
+  <Header slot="header" currentPath="/terms" />
+
+  <article class="terms-page">
+    <div class="container container--narrow">
+      <h1>Terms of Service</h1>
+      <p class="terms-page__updated">Last updated: February 2026</p>
+
+      <section>
+        <h2>1. Overview</h2>
+        <p>
+          These Terms of Service govern your use of First 100 applications and this website. By accessing or using our products, you agree to these terms.
+        </p>
+      </section>
+
+      <section>
+        <h2>2. License and use</h2>
+        <p>
+          When you purchase a First 100 app through an authorized store, you receive a limited, non-transferable license for personal or organizational use under store terms.
+        </p>
+      </section>
+
+      <section>
+        <h2>3. Payments</h2>
+        <p>
+          Parent app pricing is one-time per app unless otherwise noted. Optional word packs or seasonal content may be offered separately.
+          School and enterprise pricing is provided by direct agreement.
+        </p>
+      </section>
+
+      <section>
+        <h2>4. Content and availability</h2>
+        <p>
+          We improve and update language content over time. Some languages, categories, or features may be in preview, waitlist, or planned status.
+        </p>
+      </section>
+
+      <section>
+        <h2>5. Acceptable use</h2>
+        <p>
+          You agree not to reverse engineer, redistribute, or misuse app assets in a way that violates applicable law or platform policies.
+        </p>
+      </section>
+
+      <section>
+        <h2>6. Intellectual property</h2>
+        <p>
+          First 100 branding, visuals, audio, and product materials are owned by First 100 unless otherwise noted and are protected by applicable copyright and trademark laws.
+        </p>
+      </section>
+
+      <section>
+        <h2>7. Disclaimer and limitation</h2>
+        <p>
+          Services are provided on an "as is" and "as available" basis. To the maximum extent allowed by law, First 100 is not liable for indirect or consequential damages.
+        </p>
+      </section>
+
+      <section>
+        <h2>8. Contact</h2>
+        <p>
+          For legal or terms-related questions, contact <a href="mailto:legal@first100.app">legal@first100.app</a>.
+        </p>
+      </section>
+    </div>
+  </article>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .terms-page {
+    padding: var(--space-12) 0 var(--space-20);
+  }
+
+  .terms-page h1 {
+    font-size: var(--font-size-4xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .terms-page__updated {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-soft);
+    margin-bottom: var(--space-12);
+  }
+
+  .terms-page section {
+    margin-bottom: var(--space-9);
+  }
+
+  .terms-page h2 {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-3);
+  }
+
+  .terms-page p {
+    line-height: var(--line-height-relaxed);
+  }
+</style>

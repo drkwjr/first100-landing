@@ -1,0 +1,229 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const categoryOptions = [
+  'Animals',
+  'Colors',
+  'Body Parts',
+  'Family',
+  'Food & Drink',
+  'Numbers',
+  'Actions',
+  'Nature',
+  'Feelings',
+  'Core Responses',
+  'Home Objects',
+  'Daily Words'
+];
+---
+
+<BaseLayout
+  title="Request a Language"
+  description="Request a new language or language pair for First 100."
+>
+  <Header slot="header" currentPath="/request-language" />
+
+  <article class="request-page">
+    <div class="container container--narrow">
+      <header class="request-page__hero">
+        <p class="request-page__eyebrow">Language Request</p>
+        <h1>Tell us which language to build next</h1>
+        <p>Share the language pair and categories your family or school needs. We prioritize releases based on request volume.</p>
+      </header>
+
+      <form class="request-form" id="language-request-form">
+        <label>
+          Your name
+          <input name="name" type="text" required autocomplete="name" />
+        </label>
+
+        <label>
+          Email
+          <input name="email" type="email" required autocomplete="email" />
+        </label>
+
+        <label>
+          Target language
+          <input name="targetLanguage" type="text" required placeholder="Example: Somali" />
+        </label>
+
+        <label>
+          Pairing language
+          <input name="pairLanguage" type="text" required placeholder="Example: English" />
+        </label>
+
+        <label>
+          Region or dialect notes
+          <input name="region" type="text" placeholder="Example: Somali (Northern)" />
+        </label>
+
+        <fieldset>
+          <legend>Priority categories</legend>
+          <div class="request-form__chips">
+            {categoryOptions.map((category, index) => (
+              <label class="request-form__chip">
+                <input type="checkbox" name="categories" value={category} checked={index < 4} />
+                <span>{category}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <label>
+          Notes
+          <textarea name="notes" rows="5" placeholder="Anything else we should know?"></textarea>
+        </label>
+
+        <button type="submit">Send request</button>
+        <p class="request-form__status" id="request-status" role="status" aria-live="polite">
+          Submitting opens your email app with the request details pre-filled.
+        </p>
+      </form>
+    </div>
+  </article>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .request-page {
+    padding: var(--space-12) 0 var(--space-20);
+  }
+
+  .request-page__hero {
+    text-align: center;
+    margin-bottom: var(--space-8);
+  }
+
+  .request-page__eyebrow {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    font-size: 0.72rem;
+    color: var(--color-accent);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .request-page h1 {
+    margin-top: var(--space-3);
+    font-size: clamp(1.9rem, 3vw, 2.7rem);
+  }
+
+  .request-page__hero p {
+    margin-top: var(--space-4);
+  }
+
+  .request-form {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+    padding: var(--space-7);
+    display: grid;
+    gap: var(--space-4);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .request-form label,
+  .request-form legend {
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .request-form input,
+  .request-form textarea {
+    margin-top: var(--space-2);
+    width: 100%;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    background: #fff;
+    padding: 10px 12px;
+    color: var(--color-text);
+  }
+
+  .request-form fieldset {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+  }
+
+  .request-form__chips {
+    margin-top: var(--space-3);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .request-form__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    padding: 5px 10px;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    background: #ffffff;
+  }
+
+  .request-form__chip input {
+    width: auto;
+    margin: 0;
+  }
+
+  .request-form button {
+    justify-self: start;
+    border: none;
+    border-radius: var(--radius-full);
+    padding: 11px 18px;
+    color: var(--color-surface);
+    font-weight: var(--font-weight-semibold);
+    background: var(--color-accent);
+    cursor: pointer;
+  }
+
+  .request-form button:hover {
+    background: var(--color-accent-hover);
+  }
+
+  .request-form__status {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+</style>
+
+<script>
+  const form = document.getElementById('language-request-form');
+  const status = document.getElementById('request-status');
+
+  if (form instanceof HTMLFormElement) {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(form);
+      const categories = formData.getAll('categories').join(', ');
+      const body = [
+        `Name: ${String(formData.get('name') || '')}`,
+        `Email: ${String(formData.get('email') || '')}`,
+        `Target language: ${String(formData.get('targetLanguage') || '')}`,
+        `Pair language: ${String(formData.get('pairLanguage') || '')}`,
+        `Region/dialect: ${String(formData.get('region') || 'Not provided')}`,
+        `Priority categories: ${categories || 'Not provided'}`,
+        '',
+        'Notes:',
+        String(formData.get('notes') || 'None')
+      ].join('\n');
+
+      const subject = encodeURIComponent('Language request: First 100');
+      const encodedBody = encodeURIComponent(body);
+      window.location.href = `mailto:hello@first100.app?subject=${subject}&body=${encodedBody}`;
+
+      if (status) {
+        status.textContent = 'Your email app should now open with the request details. If not, email hello@first100.app directly.';
+      }
+    });
+  }
+</script>

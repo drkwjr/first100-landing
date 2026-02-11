@@ -6,6 +6,7 @@ import LanguageCard from '../components/LanguageCard.astro';
 import TrustSignals from '../components/TrustSignals.astro';
 import IllustrationField from '../components/IllustrationField.astro';
 import StickerSet from '../components/StickerSet.astro';
+import SocialProof from '../components/SocialProof.astro';
 import { withBase } from '../utils/withBase';
 import languageData from '../data/languages.json';
 import stickerData from '../data/stickers.json';
@@ -17,6 +18,11 @@ const featuredLanguages = languageData.languages
 const totalLanguages = languageData.languages.length;
 const railStickers = stickerData.stickers;
 const languagesPath = withBase('/languages');
+const howItWorksPath = withBase('/how-it-works');
+const showcasePath = withBase('/showcase');
+const parentsPath = withBase('/for-parents');
+const educatorsPath = withBase('/for-educators');
+const supportPath = withBase('/support');
 ---
 
 <BaseLayout title="First 100" description="First Words for Kids — in your home language. Tap a picture. Hear the word. No ads.">
@@ -40,6 +46,32 @@ const languagesPath = withBase('/languages');
           <polyline points="12 5 19 12 12 19"/>
         </svg>
       </a>
+    </div>
+  </section>
+
+  <section class="pathways">
+    <div class="container">
+      <div class="pathways__grid">
+        <a href={howItWorksPath} class="pathways__card">
+          <p class="pathways__eyebrow">Explore Product</p>
+          <h2 class="pathways__title">How It Works</h2>
+          <p class="pathways__copy">See the tap-hear-repeat flow, sample content categories, and what toddlers experience in each session.</p>
+        </a>
+        <a href={parentsPath} class="pathways__card">
+          <p class="pathways__eyebrow">For Families</p>
+          <h2 class="pathways__title">Parent Pricing</h2>
+          <p class="pathways__copy">Each app is $2.99 one-time, with optional themed add-on packs and seasonal word categories.</p>
+        </a>
+        <a href={educatorsPath} class="pathways__card">
+          <p class="pathways__eyebrow">For Schools</p>
+          <h2 class="pathways__title">Educator Plans</h2>
+          <p class="pathways__copy">Classroom rollout, multi-device support, and enterprise-style purchasing via direct contact.</p>
+        </a>
+      </div>
+      <div class="pathways__links">
+        <a href={showcasePath} class="pathways__support-link">See multilingual showcase →</a>
+        <a href={supportPath} class="pathways__support-link">Need details first? Visit Support →</a>
+      </div>
     </div>
   </section>
 
@@ -74,6 +106,7 @@ const languagesPath = withBase('/languages');
   
   <!-- Trust Signals Section -->
   <TrustSignals />
+  <SocialProof />
   
   <Footer slot="footer" />
 </BaseLayout>
@@ -148,6 +181,70 @@ const languagesPath = withBase('/languages');
   
   .hero__cta:hover .hero__cta-icon {
     transform: translateX(4px);
+  }
+
+  .pathways {
+    padding: var(--space-12) 0;
+    background: var(--color-surface);
+  }
+
+  .pathways__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .pathways__card {
+    display: block;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(180deg, #ffffff, #f8fcf9);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+  }
+
+  .pathways__card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(74, 124, 89, 0.3);
+  }
+
+  .pathways__eyebrow {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    font-size: 0.7rem;
+    color: var(--color-accent);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .pathways__title {
+    margin: var(--space-3) 0 0;
+    font-size: var(--font-size-xl);
+    color: var(--color-text);
+  }
+
+  .pathways__copy {
+    margin: var(--space-3) 0 0;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+  }
+
+  .pathways__support-link {
+    display: inline-flex;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .pathways__links {
+    margin-top: var(--space-6);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-5);
+    align-items: center;
   }
   
   /* Languages Preview Section */
@@ -283,6 +380,10 @@ const languagesPath = withBase('/languages');
     .languages-preview__header {
       flex-direction: column;
       align-items: flex-start;
+    }
+
+    .pathways__grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>

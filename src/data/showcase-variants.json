@@ -1,0 +1,144 @@
+{
+  "generatedAt": "2026-02-11T02:34:56.406Z",
+  "options": {
+    "editModel": "gpt-image-1",
+    "fallbackModel": "gpt-image-1.5",
+    "allowFallback": false,
+    "size": "1024x1024",
+    "quality": "medium",
+    "referenceSet": "screens+marketing"
+  },
+  "references": [
+    "first100screen1.PNG",
+    "first100screen2.PNG",
+    "first100screen3.PNG",
+    "appmarketing01.png",
+    "appmarketing02.png",
+    "appmarketing03.png",
+    "appmarketing04.png",
+    "appmarketing05.png",
+    "appmarketing06.png"
+  ],
+  "items": [
+    {
+      "id": "english-somali-animals",
+      "category": "Animals",
+      "sourceLanguage": "English",
+      "targetLanguage": "Somali",
+      "pairSlug": "english-somali",
+      "imagePath": "/showcase/english-somali/animals.png",
+      "method": "existing",
+      "model": null
+    },
+    {
+      "id": "english-somali-colors",
+      "category": "Colors",
+      "sourceLanguage": "English",
+      "targetLanguage": "Somali",
+      "pairSlug": "english-somali",
+      "imagePath": "/showcase/english-somali/colors.png",
+      "method": "existing",
+      "model": null
+    },
+    {
+      "id": "english-somali-body-parts",
+      "category": "Body Parts",
+      "sourceLanguage": "English",
+      "targetLanguage": "Somali",
+      "pairSlug": "english-somali",
+      "imagePath": "/showcase/english-somali/body-parts.png",
+      "method": "existing",
+      "model": null
+    },
+    {
+      "id": "english-somali-family",
+      "category": "Family",
+      "sourceLanguage": "English",
+      "targetLanguage": "Somali",
+      "pairSlug": "english-somali",
+      "imagePath": "/showcase/english-somali/family.png",
+      "method": "existing",
+      "model": null
+    },
+    {
+      "id": "english-somali-food-and-drink",
+      "category": "Food & Drink",
+      "sourceLanguage": "English",
+      "targetLanguage": "Somali",
+      "pairSlug": "english-somali",
+      "imagePath": "/showcase/english-somali/food-and-drink.png",
+      "method": "existing",
+      "model": null
+    },
+    {
+      "id": "english-somali-numbers",
+      "category": "Numbers",
+      "sourceLanguage": "English",
+      "targetLanguage": "Somali",
+      "pairSlug": "english-somali",
+      "imagePath": "/showcase/english-somali/numbers.png",
+      "method": "existing",
+      "model": null
+    },
+    {
+      "id": "english-somali-actions",
+      "category": "Actions",
+      "sourceLanguage": "English",
+      "targetLanguage": "Somali",
+      "pairSlug": "english-somali",
+      "imagePath": "/showcase/english-somali/actions.png",
+      "method": "existing",
+      "model": null
+    },
+    {
+      "id": "english-somali-nature",
+      "category": "Nature",
+      "sourceLanguage": "English",
+      "targetLanguage": "Somali",
+      "pairSlug": "english-somali",
+      "imagePath": "/showcase/english-somali/nature.png",
+      "method": "existing",
+      "model": null
+    },
+    {
+      "id": "english-somali-feelings",
+      "category": "Feelings",
+      "sourceLanguage": "English",
+      "targetLanguage": "Somali",
+      "pairSlug": "english-somali",
+      "imagePath": "/showcase/english-somali/feelings.png",
+      "method": "existing",
+      "model": null
+    },
+    {
+      "id": "english-somali-core-responses",
+      "category": "Core Responses",
+      "sourceLanguage": "English",
+      "targetLanguage": "Somali",
+      "pairSlug": "english-somali",
+      "imagePath": "/showcase/english-somali/core-responses.png",
+      "method": "existing",
+      "model": null
+    },
+    {
+      "id": "english-somali-home-objects",
+      "category": "Home Objects",
+      "sourceLanguage": "English",
+      "targetLanguage": "Somali",
+      "pairSlug": "english-somali",
+      "imagePath": "/showcase/english-somali/home-objects.png",
+      "method": "existing",
+      "model": null
+    },
+    {
+      "id": "english-somali-daily-words",
+      "category": "Daily Words",
+      "sourceLanguage": "English",
+      "targetLanguage": "Somali",
+      "pairSlug": "english-somali",
+      "imagePath": "/showcase/english-somali/daily-words.png",
+      "method": "edit",
+      "model": "gpt-image-1"
+    }
+  ]
+}

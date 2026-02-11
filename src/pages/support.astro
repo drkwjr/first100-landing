@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { withBase } from '../utils/withBase';
+
+const faqItems = [
+  {
+    question: 'What age range is First 100 for?',
+    answer: 'First 100 is built for toddlers ages 1-4. The interaction model is visual, audio-first, and low-friction for early learners.'
+  },
+  {
+    question: 'Does the app work offline?',
+    answer: 'Yes. Once downloaded, learning content and audio are available without internet access.'
+  },
+  {
+    question: 'Do you show ads or use subscriptions?',
+    answer: 'No ads and no subscriptions. Parent apps are one-time purchases, with optional add-on packs.'
+  },
+  {
+    question: 'How do I request a new language?',
+    answer: 'Use the Request a Language page and share your target language plus region details. We use demand signals to prioritize releases.'
+  },
+  {
+    question: 'Do you offer school licensing?',
+    answer: 'Yes. For schools and organizations, we provide enterprise-style partnerships and custom rollout planning.'
+  },
+  {
+    question: 'How is pronunciation handled?',
+    answer: 'Word audio is recorded by native speakers to keep pronunciation natural and culturally familiar.'
+  }
+];
+
+const requestPath = withBase('/request-language');
+const educatorsPath = withBase('/for-educators');
+---
+
+<BaseLayout title="Support" description="Support resources and frequently asked questions for First 100.">
+  <Header slot="header" currentPath="/support" />
+
+  <article class="support-page">
+    <div class="container container--narrow">
+      <header class="support-page__hero">
+        <p class="support-page__eyebrow">Support</p>
+        <h1>Frequently asked questions</h1>
+        <p>Answers for families, schools, and partners using First 100 apps.</p>
+      </header>
+
+      <section class="support-page__faq" aria-label="Frequently asked questions">
+        {faqItems.map((item) => (
+          <details class="support-page__item">
+            <summary>{item.question}</summary>
+            <p>{item.answer}</p>
+          </details>
+        ))}
+      </section>
+
+      <section class="support-page__actions" aria-label="Support actions">
+        <a href={requestPath} class="support-page__cta">Request a language</a>
+        <a href={educatorsPath} class="support-page__link">School partnership info</a>
+        <a href="mailto:hello@first100.app" class="support-page__link">Email support</a>
+      </section>
+    </div>
+  </article>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .support-page {
+    padding: var(--space-12) 0 var(--space-20);
+  }
+
+  .support-page__hero {
+    text-align: center;
+    margin-bottom: var(--space-10);
+  }
+
+  .support-page__eyebrow {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    font-size: 0.72rem;
+    color: var(--color-accent);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .support-page h1 {
+    margin-top: var(--space-3);
+    font-size: clamp(2rem, 3.2vw, 2.8rem);
+  }
+
+  .support-page__hero p {
+    margin-top: var(--space-4);
+    font-size: var(--font-size-md);
+  }
+
+  .support-page__faq {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .support-page__item {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .support-page__item summary {
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  .support-page__item p {
+    margin-top: var(--space-3);
+    line-height: 1.65;
+  }
+
+  .support-page__actions {
+    margin-top: var(--space-10);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  .support-page__cta,
+  .support-page__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: var(--radius-full);
+    padding: 10px 18px;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .support-page__cta {
+    color: var(--color-surface);
+    background: var(--color-accent);
+  }
+
+  .support-page__link {
+    color: var(--color-text);
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+  }
+</style>

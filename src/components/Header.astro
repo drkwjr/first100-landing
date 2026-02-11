@@ -6,29 +6,40 @@ interface Props {
 }
 
 const { currentPath = '' } = Astro.props;
-const homePath = withBase('/');
-const languagesPath = withBase('/languages');
 const basePrefix = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '');
 const normalizedCurrentPath =
   basePrefix && currentPath.startsWith(basePrefix)
     ? currentPath.slice(basePrefix.length) || '/'
     : currentPath;
+
+const navItems = [
+  { label: 'Languages', href: withBase('/languages'), active: normalizedCurrentPath.startsWith('/languages') || normalizedCurrentPath.startsWith('/l/') },
+  { label: 'How It Works', href: withBase('/how-it-works'), active: normalizedCurrentPath.startsWith('/how-it-works') },
+  { label: 'Showcase', href: withBase('/showcase'), active: normalizedCurrentPath.startsWith('/showcase') },
+  { label: 'For Parents', href: withBase('/for-parents'), active: normalizedCurrentPath.startsWith('/for-parents') },
+  { label: 'For Educators', href: withBase('/for-educators'), active: normalizedCurrentPath.startsWith('/for-educators') },
+  { label: 'Support', href: withBase('/support'), active: normalizedCurrentPath.startsWith('/support') }
+];
+
+const homePath = withBase('/');
+const requestPath = withBase('/request-language');
+const logoPath = withBase('/brand/logo-mark.png');
 ---
 
 <header class="header">
   <div class="header__container container">
     <a href={homePath} class="header__logo" aria-label="First 100 - Home">
+      <img src={logoPath} alt="First 100 logo" width="36" height="36" loading="eager" decoding="async" class="header__logo-mark" />
       <span class="header__logo-text">First 100</span>
     </a>
-    
+
     <nav class="header__nav" aria-label="Main navigation">
-      <a 
-        href={languagesPath}
-        class:list={["header__nav-link", { "header__nav-link--active": normalizedCurrentPath.startsWith('/languages') || normalizedCurrentPath.startsWith('/l/') }]}
-      >
-        Languages
-      </a>
+      {navItems.map((item) => (
+        <a href={item.href} class:list={["header__nav-link", { "header__nav-link--active": item.active }]}>{item.label}</a>
+      ))}
     </nav>
+
+    <a href={requestPath} class="header__request-link">Request a Language</a>
   </div>
 </header>
 
@@ -37,56 +48,136 @@ const normalizedCurrentPath =
     position: sticky;
     top: 0;
     z-index: 100;
-    background: var(--color-bg);
+    background: rgba(255, 251, 247, 0.95);
+    backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--color-border-soft);
-    height: var(--header-height);
+    min-height: var(--header-height);
     display: flex;
     align-items: center;
   }
-  
+
   .header__container {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
-    justify-content: space-between;
+    gap: var(--space-4);
+    width: 100%;
   }
-  
+
   .header__logo {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: var(--space-2);
     text-decoration: none;
+    flex-shrink: 0;
   }
-  
+
+  .header__logo-mark {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: 1px solid rgba(74, 124, 89, 0.22);
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(45, 42, 38, 0.08);
+  }
+
   .header__logo-text {
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-semibold);
     color: var(--color-text);
     letter-spacing: var(--letter-spacing-tight);
   }
-  
+
   .header__nav {
     display: flex;
     align-items: center;
-    gap: var(--space-6);
+    justify-content: center;
+    gap: var(--space-2);
+    overflow-x: auto;
+    scrollbar-width: thin;
+    padding: 0 var(--space-2);
   }
-  
+
   .header__nav-link {
-    font-size: var(--font-size-base);
+    font-size: 0.92rem;
     font-weight: var(--font-weight-medium);
     color: var(--color-text-muted);
     text-decoration: none;
-    padding: var(--space-2) var(--space-3);
+    padding: 7px 10px;
     border-radius: var(--radius-sm);
+    white-space: nowrap;
     transition: color var(--transition-fast), background-color var(--transition-fast);
   }
-  
+
   .header__nav-link:hover {
     color: var(--color-text);
     background-color: var(--color-accent-soft);
   }
-  
+
   .header__nav-link--active {
     color: var(--color-accent);
     background-color: var(--color-accent-soft);
+  }
+
+  .header__request-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    border-radius: var(--radius-full);
+    padding: 9px 16px;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-surface);
+    background: linear-gradient(180deg, var(--color-accent), #2f6f4f);
+    box-shadow: 0 8px 20px rgba(47, 111, 79, 0.26);
+    text-decoration: none;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .header__request-link:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(47, 111, 79, 0.3);
+    color: var(--color-surface);
+  }
+
+  @media (max-width: 1120px) {
+    .header__container {
+      grid-template-columns: auto 1fr;
+      grid-template-areas:
+        'logo cta'
+        'nav nav';
+      row-gap: var(--space-2);
+      padding-top: var(--space-2);
+      padding-bottom: var(--space-2);
+    }
+
+    .header__logo {
+      grid-area: logo;
+    }
+
+    .header__request-link {
+      grid-area: cta;
+      justify-self: end;
+      font-size: 0.8rem;
+      padding: 8px 12px;
+    }
+
+    .header__nav {
+      grid-area: nav;
+      justify-content: flex-start;
+      padding: 0;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .header__logo-text {
+      display: none;
+    }
+
+    .header__request-link {
+      font-size: 0.75rem;
+      padding: 7px 10px;
+    }
   }
 </style>

@@ -1,0 +1,64 @@
+{
+  "generatedAt": "2026-02-11T02:40:15.779Z",
+  "options": {
+    "model": "gpt-image-1",
+    "quality": "high",
+    "size": "auto"
+  },
+  "items": [
+    {
+      "id": "appmarketing01-spanish",
+      "templateId": "appmarketing01",
+      "category": "Actions",
+      "language": "Spanish",
+      "languageSlug": "spanish",
+      "imagePath": "/marketing/localized/spanish/appmarketing01.png",
+      "method": "edit"
+    },
+    {
+      "id": "appmarketing02-spanish",
+      "templateId": "appmarketing02",
+      "category": "Animals",
+      "language": "Spanish",
+      "languageSlug": "spanish",
+      "imagePath": "/marketing/localized/spanish/appmarketing02.png",
+      "method": "edit"
+    },
+    {
+      "id": "appmarketing03-spanish",
+      "templateId": "appmarketing03",
+      "category": "Home Objects",
+      "language": "Spanish",
+      "languageSlug": "spanish",
+      "imagePath": "/marketing/localized/spanish/appmarketing03.png",
+      "method": "edit"
+    },
+    {
+      "id": "appmarketing04-spanish",
+      "templateId": "appmarketing04",
+      "category": "Colors",
+      "language": "Spanish",
+      "languageSlug": "spanish",
+      "imagePath": "/marketing/localized/spanish/appmarketing04.png",
+      "method": "edit"
+    },
+    {
+      "id": "appmarketing05-spanish",
+      "templateId": "appmarketing05",
+      "category": "Family",
+      "language": "Spanish",
+      "languageSlug": "spanish",
+      "imagePath": "/marketing/localized/spanish/appmarketing05.png",
+      "method": "edit"
+    },
+    {
+      "id": "appmarketing06-spanish",
+      "templateId": "appmarketing06",
+      "category": "Nature",
+      "language": "Spanish",
+      "languageSlug": "spanish",
+      "imagePath": "/marketing/localized/spanish/appmarketing06.png",
+      "method": "edit"
+    }
+  ]
+}
